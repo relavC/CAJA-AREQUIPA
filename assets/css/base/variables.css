@@ -1,0 +1,58 @@
+/* =========================================================
+   VARIABLES (Design tokens)
+   Cambia estos valores para cambiar toda la marca.
+   ========================================================= */
+:root {
+  /* Colores de marca */
+  --color-primary: #d7193a;
+  --color-primary-dark: #a80f2b;
+  --color-primary-soft: #fdecef;
+  --color-accent: #f5a524;
+  --color-dark: #0f172a;
+  --color-dark-2: #1e293b;
+
+  /* Neutros */
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-bg: #ffffff;
+  --color-bg-soft: #f6f7fb;
+  --color-border: #e5e7eb;
+  --color-white: #ffffff;
+  --color-success: #16a34a;
+
+  /* Tipografía */
+  --font-base: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-h2: clamp(1.75rem, 3.5vw, 2.6rem);
+  --fs-h1: clamp(2rem, 4.8vw, 3.6rem);
+
+  /* Espaciado y forma */
+  --container: 1240px;
+  --gutter: clamp(1rem, 3vw, 2rem);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.12);
+
+  /* Movimiento */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 0.2s;
+  --t-base: 0.35s;
+
+  /* Capas */
+  --z-header: 100;
+  --z-overlay: 90;
+  --z-nav: 110;
+  --z-float: 80;
+
+  --header-h: 76px;
+}

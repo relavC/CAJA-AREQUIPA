@@ -1,0 +1,119 @@
+/* =========================================================
+   FOOTER + BOTÓN VOLVER ARRIBA
+   ========================================================= */
+.footer {
+  background: var(--color-dark);
+  color: #94a3b8;
+  padding-top: clamp(3rem, 7vw, 5rem);
+  font-size: var(--fs-sm);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr);
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+}
+
+.footer__brand p {
+  margin: 1rem 0 1.25rem;
+  max-width: 300px;
+}
+
+.footer__col h4 {
+  color: var(--color-white);
+  font-size: var(--fs-base);
+  margin-bottom: 1rem;
+}
+
+.footer__col ul {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.footer__col li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.footer__col a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: color var(--t-fast);
+}
+
+.footer__col a:hover { color: var(--color-white); }
+
+.socials { display: flex; gap: 0.5rem; }
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+  font-size: 1.1rem;
+  transition: background var(--t-fast), transform var(--t-fast);
+}
+
+.socials a:hover {
+  background: var(--color-primary);
+  transform: translateY(-3px);
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-block: 1.25rem;
+}
+
+.footer__bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer__bottom-inner div { display: flex; gap: 1.25rem; }
+.footer__bottom-inner a:hover { color: var(--color-white); }
+
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 1.3rem;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: all var(--t-base) var(--ease);
+  z-index: var(--z-float);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.back-to-top:hover { background: var(--color-primary-dark); }
+
+@media (max-width: 900px) {
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+  .footer__brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 520px) {
+  .footer__grid { grid-template-columns: 1fr; }
+  .footer__bottom-inner { flex-direction: column; text-align: center; align-items: center; }
+}

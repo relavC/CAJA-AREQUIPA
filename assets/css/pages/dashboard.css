@@ -1,0 +1,40 @@
+/* =========================================================
+   PÁGINA: DASHBOARD (base — se ampliará en la siguiente fase)
+   ========================================================= */
+.dashboard-placeholder {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background: radial-gradient(circle at 20% 20%, var(--color-primary-soft), transparent 50%),
+              var(--color-bg-soft);
+  text-align: center;
+}
+
+.dashboard-placeholder__card {
+  max-width: 480px;
+  padding: clamp(2rem, 6vw, 3rem);
+  border-radius: var(--radius-xl);
+  background: var(--color-white);
+  box-shadow: var(--shadow-lg);
+}
+
+.dashboard-placeholder__icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-lg);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 2rem;
+}
+
+.dashboard-placeholder h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+
+.dashboard-placeholder p {
+  color: var(--color-text-muted);
+  margin-bottom: 1.75rem;
+}

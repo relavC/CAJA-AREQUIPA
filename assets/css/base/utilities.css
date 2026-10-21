@@ -1,0 +1,106 @@
+/* =========================================================
+   UTILIDADES Y SECCIONES GENÉRICAS
+   ========================================================= */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.section--soft { background: var(--color-bg-soft); }
+
+.section--dark {
+  background: radial-gradient(circle at 15% 20%, rgba(215, 25, 58, 0.35), transparent 45%),
+              var(--color-dark);
+  color: var(--color-white);
+}
+
+.section__head {
+  max-width: 640px;
+  margin: 0 auto clamp(2rem, 5vw, 3rem);
+  text-align: center;
+}
+
+.section__head--row {
+  max-width: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.section__title {
+  font-size: var(--fs-h2);
+  margin-bottom: 0.75rem;
+}
+
+.section__text {
+  color: var(--color-text-muted);
+  font-size: var(--fs-lg);
+}
+
+.section--dark .section__text { color: #cbd5e1; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1rem;
+}
+
+.eyebrow--light {
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  transition: gap var(--t-fast) var(--ease);
+}
+
+.link-arrow:hover { gap: 0.6rem; }
+
+/* Animación de aparición al hacer scroll (activada por reveal.js) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--t-base) var(--ease), visibility var(--t-base);
+  z-index: var(--z-overlay);
+}
+
+.overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
