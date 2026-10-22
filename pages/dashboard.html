@@ -3,22 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard | NovaCaja</title>
+  <title>Dashboard | SEJ Partners</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/main.css" />
+
+  <!-- SheetJS: leer el Excel y descargar reportes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script type="module" src="../assets/js/dashboard/app.js"></script>
 </head>
-<body>
-  <!-- Página provisional: aquí se construirá el CRM / Dashboard -->
-  <main class="dashboard-placeholder">
-    <div class="dashboard-placeholder__card">
-      <div class="dashboard-placeholder__icon"><i class="ri-dashboard-line"></i></div>
-      <h1>Dashboard en construcción</h1>
-      <p>Aquí vivirá el CRM: clientes, oportunidades, reportes e indicadores.</p>
-      <a href="../index.html" class="btn btn--primary"><i class="ri-arrow-left-line"></i> Volver al inicio</a>
+<body class="app-body">
+
+  <!-- Pantalla de carga -->
+  <div class="app-loading" data-loading>
+    <img src="../assets/img/logo-sej.png" alt="SEJ Partners" />
+    <span class="spinner"></span>
+  </div>
+
+  <div class="app" data-app hidden>
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" data-sidebar>
+      <a href="../index.html" class="sidebar__logo" aria-label="Ir al portal">
+        <img src="../assets/img/logo-sej-white.png" alt="SEJ Partners S.A.C." />
+      </a>
+      <nav class="sidebar__nav" data-menu aria-label="Menú del dashboard"></nav>
+      <div class="sidebar__user">
+        <div class="avatar" data-user-initials>--</div>
+        <div class="sidebar__user-info">
+          <strong data-user-name>Usuario</strong>
+          <span data-user-role>rol</span>
+        </div>
+        <button class="icon-btn" data-logout aria-label="Cerrar sesión" title="Cerrar sesión"><i class="ri-logout-box-r-line"></i></button>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" data-sidebar-overlay></div>
+
+    <!-- ============ CONTENIDO ============ -->
+    <div class="app__main">
+      <header class="appbar">
+        <button class="icon-btn appbar__burger" data-sidebar-toggle aria-label="Abrir menú"><i class="ri-menu-line"></i></button>
+        <div class="appbar__title">
+          <h1 data-view-title>Resumen</h1>
+          <span data-view-subtitle></span>
+        </div>
+        <label class="appbar__period">
+          <i class="ri-calendar-2-line"></i>
+          <span class="sr-only">Mes</span>
+          <input type="month" data-periodo />
+        </label>
+      </header>
+
+      <main class="app__content" data-view></main>
     </div>
-  </main>
+  </div>
+
+  <div class="toasts" data-toasts aria-live="polite"></div>
 </body>
 </html>

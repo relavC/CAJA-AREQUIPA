@@ -1,41 +1,54 @@
-# NovaCaja — Web + CRM / Dashboard
+# SEJ Partners — Portal interno + Dashboard de créditos
 
-Landing page estilo entidad financiera (menú, slider, accesos rápidos, productos, simulador, app, noticias, footer) con acceso al Dashboard.
+Portal interno (landing) para supervisores y jefatura, con login y dashboard conectado a **Supabase**.
 
-## Cómo ejecutarlo en VS Code
+## Primeros pasos
 
-1. Abre la carpeta `crm-web` en VS Code.
-2. Instala la extensión **Live Server** (Ritwick Dey).
-3. Clic derecho en `index.html` → **Open with Live Server**.
-
-> El JavaScript usa módulos ES (`import/export`), por eso **debe abrirse con un servidor** (Live Server).
-> Si abres el HTML con doble clic (`file://`), el navegador bloquea los módulos.
+1. Sigue **GUIA-SUPABASE.md** (crear proyecto, tablas, usuario admin, función de usuarios).
+2. Coloca tu URL y anon key en `assets/js/config.js`.
+3. En VS Code: clic derecho en `index.html` → **Open with Live Server** (los módulos JS necesitan un servidor).
 
 ## Estructura
 
 ```
 crm-web/
-├── index.html                 # Página principal (landing)
+├── index.html                    # Portal (landing)
 ├── pages/
-│   └── dashboard.html         # Dashboard / CRM (siguiente fase)
+│   ├── login.html                # Inicio de sesión
+│   └── dashboard.html            # Dashboard (menú según rol)
+├── supabase/
+│   ├── schema.sql                # Tablas, seguridad por rol (RLS), carga del Excel, datos iniciales
+│   └── functions/admin-usuarios/ # Edge Function: crear/editar/eliminar usuarios
+├── GUIA-SUPABASE.md
 └── assets/
-    ├── css/
-    │   ├── main.css           # Importa todos los parciales
-    │   ├── base/              # variables (colores, fuentes), reset, utilidades
-    │   ├── layout/            # header, footer
-    │   ├── components/        # botones, slider, tarjetas, tabs, formularios
-    │   └── pages/             # estilos por página (home, dashboard)
+    ├── img/                      # Logos
+    ├── css/                      # base/, layout/, components/, pages/ (main.css los importa)
     └── js/
-        ├── main.js            # Inicializa todos los módulos
-        ├── utils/helpers.js   # Funciones reutilizables
-        ├── data/products.js   # Datos de productos (luego → API)
-        └── modules/           # header, slider, tabs, simulator, counters, reveal, ui
+        ├── config.js             # URL y llave de Supabase
+        ├── main.js               # Módulos del portal
+        ├── services/             # supabase.js, auth.js, api.js (todas las consultas)
+        ├── core/                 # excel.js (lee hoja SEJ / descarga reporte), calculos.js (Resumen 1 y 2)
+        ├── dashboard/            # app.js (rutas y menú), ui.js, views/ (una pantalla por archivo)
+        ├── pages/login.js
+        ├── modules/              # header, slider, tabs, simulador... (portal)
+        ├── data/products.js      # Productos Caja Arequipa
+        └── utils/helpers.js
 ```
 
-## Cómo escalar
+## Pantallas del dashboard
 
-- **Cambiar colores/marca:** edita `assets/css/base/variables.css`.
-- **Nuevo componente:** crea `components/mi-componente.css` e impórtalo en `main.css`; crea `modules/mi-modulo.js` y agrégalo al arreglo de `main.js`.
-- **Nueva página:** crea `pages/nueva.html` (con rutas `../assets/...`) y su CSS en `css/pages/`.
-- **Productos:** edita `js/data/products.js`; luego reemplázalo por un `fetch()` a tu backend.
-- **Backend futuro:** Node/Express, PHP, Python o .NET sin cambiar la estructura del front.
+| Pantalla | Roles | Qué hace |
+|---|---|---|
+| Resumen | Todos | Admin/Jefe: avance por región (Resumen 2), por supervisor y por región/agencia (Resumen 1). Supervisor: su avance vs meta. Descarga Excel. |
+| Detalle de créditos | Todos | Tabla con búsqueda y filtros; exporta a Excel. |
+| Cargar Excel | Admin | Lee la hoja SEJ y reemplaza la data del mes. |
+| Metas del mes | Admin | Cuota por región y meta por supervisor. |
+| Agencias y regiones | Admin | Agencia → región del cuadro y orden de regiones. |
+| Feriados | Admin | Días que no cuentan como útiles. |
+| Usuarios | Admin | Crear usuarios, rol, código asesor, contraseña. |
+
+## Agregar una pantalla nueva (ej. gráficos)
+
+1. Crea `assets/js/dashboard/views/graficos.js` con `export async function render(ctx) { ... }`.
+2. Impórtala en `assets/js/dashboard/app.js` y agrégala a `RUTAS` con los roles que pueden verla.
+3. Usa `await ctx.datos.mes()` para obtener `{ creditos, config }` del mes elegido.
