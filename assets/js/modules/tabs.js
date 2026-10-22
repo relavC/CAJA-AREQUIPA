@@ -54,6 +54,11 @@ export function initTabs() {
     });
   });
 
+  // Enlaces del menú que abren una pestaña concreta: <a data-go-tab="consumo">
+  $$('[data-go-tab]').forEach((link) =>
+    link.addEventListener('click', () => render(link.dataset.goTab))
+  );
+
   const initial = buttons.find((b) => b.classList.contains('is-active')) ?? buttons[0];
   render(initial.dataset.tab);
 }

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NovaCaja - Créditos, ahorros y seguros para personas y negocios." />
-  <title>NovaCaja | Tu caja de confianza</title>
+  <meta name="description" content="SEJ Partners S.A.C. - Portal interno para supervisores y jefatura." />
+  <title>SEJ Partners | Portal interno</title>
 
   <!-- Evita parpadeo de animaciones: marca que JS está activo -->
   <script>document.documentElement.classList.add('js');</script>
@@ -26,14 +26,17 @@
   <!-- ============ TOPBAR ============ -->
   <div class="topbar">
     <div class="container topbar__inner">
-      <nav class="topbar__segments" aria-label="Segmentos">
-        <a href="#" class="topbar__segment is-active">Personas</a>
-        <a href="#" class="topbar__segment">Empresas</a>
+      <nav class="topbar__segments" aria-label="Portal">
+        <span class="topbar__segment is-active">Portal interno</span>
       </nav>
       <ul class="topbar__links">
-        <li><a href="#"><i class="ri-shield-check-line"></i> Transparencia</a></li>
-        <li><a href="#"><i class="ri-map-pin-line"></i> Agencias</a></li>
-        <li><a href="tel:+5115550000"><i class="ri-phone-line"></i> (01) 555-0000</a></li>
+        <li><a href="#comunicados"><i class="ri-megaphone-line"></i> Comunicados</a></li>
+        <li><a href="#productos"><i class="ri-file-list-3-line"></i> Productos</a></li>
+        <li>
+          <a href="https://wa.me/51921159363?text=Hola%2C%20necesito%20soporte" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Soporte
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -41,56 +44,44 @@
   <!-- ============ HEADER ============ -->
   <header class="header" data-header>
     <div class="container header__inner">
-      <a href="index.html" class="logo" aria-label="NovaCaja inicio">
-        <span class="logo__mark">
-          <svg viewBox="0 0 40 40" aria-hidden="true">
-            <rect width="40" height="40" rx="12" fill="currentColor" />
-            <path d="M12 28V12l16 16V12" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </span>
-        <span class="logo__text">Nova<strong>Caja</strong></span>
+      <a href="index.html" class="logo" aria-label="SEJ Partners inicio">
+        <img src="assets/img/logo-sej.png" alt="SEJ Partners S.A.C." class="logo__img" />
       </a>
 
       <nav class="nav" id="mainNav" data-nav aria-label="Menú principal">
         <ul class="nav__list">
+          <li class="nav__item"><a href="index.html" class="nav__link">Inicio</a></li>
           <li class="nav__item nav__item--dropdown">
             <button class="nav__link" data-dropdown-toggle aria-expanded="false">
-              Créditos <i class="ri-arrow-down-s-line"></i>
+              Productos <i class="ri-arrow-down-s-line"></i>
             </button>
             <ul class="dropdown">
-              <li><a href="#productos"><i class="ri-store-2-line"></i> Crédito Negocio</a></li>
-              <li><a href="#productos"><i class="ri-user-smile-line"></i> Crédito Personal</a></li>
-              <li><a href="#productos"><i class="ri-car-line"></i> Crédito Vehicular</a></li>
-              <li><a href="#productos"><i class="ri-home-4-line"></i> Crédito Hipotecario</a></li>
-              <li><a href="#productos"><i class="ri-plant-line"></i> Crédito Agropecuario</a></li>
+              <li><a href="#productos" data-go-tab="negocios"><i class="ri-store-2-line"></i> Créditos de negocio</a></li>
+              <li><a href="#productos" data-go-tab="consumo"><i class="ri-user-smile-line"></i> Créditos de consumo</a></li>
+              <li><a href="#productos" data-go-tab="vivienda"><i class="ri-home-4-line"></i> Créditos de vivienda</a></li>
             </ul>
           </li>
           <li class="nav__item nav__item--dropdown">
             <button class="nav__link" data-dropdown-toggle aria-expanded="false">
-              Ahorros <i class="ri-arrow-down-s-line"></i>
+              Herramientas <i class="ri-arrow-down-s-line"></i>
             </button>
             <ul class="dropdown">
-              <li><a href="#productos"><i class="ri-wallet-3-line"></i> Cuenta de Ahorros</a></li>
-              <li><a href="#productos"><i class="ri-safe-2-line"></i> Plazo Fijo</a></li>
-              <li><a href="#productos"><i class="ri-briefcase-4-line"></i> Depósito CTS</a></li>
-              <li><a href="#productos"><i class="ri-bear-smile-line"></i> Ahorro Niños</a></li>
+              <li><a href="#simulador"><i class="ri-calculator-line"></i> Simulador de cuota</a></li>
+              <li><a href="#accesos"><i class="ri-shield-user-line"></i> Roles y accesos</a></li>
+              <li><a href="https://wa.me/51921159363" target="_blank" rel="noopener noreferrer"><i class="ri-whatsapp-line"></i> Soporte por WhatsApp</a></li>
             </ul>
           </li>
-          <li class="nav__item"><a href="#productos" class="nav__link">Seguros</a></li>
-          <li class="nav__item"><a href="#noticias" class="nav__link">Promociones</a></li>
-          <li class="nav__item"><a href="#app" class="nav__link">Canales</a></li>
+          <li class="nav__item"><a href="#comunicados" class="nav__link">Comunicados</a></li>
         </ul>
 
-        <!-- Acciones visibles solo en el menú móvil -->
+        <!-- Acción visible solo en el menú móvil -->
         <div class="nav__mobile-actions">
-          <a href="pages/dashboard.html" class="btn btn--ghost btn--block"><i class="ri-dashboard-line"></i> Dashboard</a>
-          <a href="#" class="btn btn--primary btn--block"><i class="ri-lock-line"></i> Banca por Internet</a>
+          <a href="pages/login.html" class="btn btn--primary btn--block"><i class="ri-dashboard-line"></i> Ingresar al Dashboard</a>
         </div>
       </nav>
 
       <div class="header__actions">
-        <a href="pages/dashboard.html" class="btn btn--ghost"><i class="ri-dashboard-line"></i> Dashboard</a>
-        <a href="#" class="btn btn--primary"><i class="ri-lock-line"></i> Banca por Internet</a>
+        <a href="pages/login.html" class="btn btn--primary"><i class="ri-dashboard-line"></i> Ingresar al Dashboard</a>
       </div>
 
       <button class="burger" data-burger aria-label="Abrir menú" aria-controls="mainNav" aria-expanded="false">
@@ -109,68 +100,71 @@
 
             <article class="slide slide--1" aria-roledescription="diapositiva">
               <div class="slide__content">
-                <span class="slide__tag"><i class="ri-store-2-line"></i> Crédito Negocio</span>
-                <h1 class="slide__title">Impulsa tu negocio <span>hoy mismo</span></h1>
-                <p class="slide__text">Capital de trabajo y activo fijo con evaluación rápida y cuotas que se adaptan a ti.</p>
+                <span class="slide__tag"><i class="ri-team-line"></i> Portal de supervisores</span>
+                <h1 class="slide__title">Bienvenido al portal <span>SEJ Partners</span></h1>
+                <p class="slide__text">Aquí encuentras los productos que colocamos, herramientas de apoyo y el acceso a tu dashboard de resultados.</p>
                 <div class="slide__actions">
-                  <a href="#" class="btn btn--light">Solicitar ahora</a>
-                  <a href="#simulador" class="btn btn--outline-light"><i class="ri-calculator-line"></i> Simular</a>
+                  <a href="pages/login.html" class="btn btn--light">Ingresar al Dashboard</a>
+                  <a href="#productos" class="btn btn--outline-light">Ver productos</a>
                 </div>
               </div>
               <div class="slide__visual" aria-hidden="true">
                 <div class="glass-card">
-                  <div class="glass-card__head"><i class="ri-checkbox-circle-fill"></i> Crédito aprobado</div>
-                  <div class="glass-card__amount">S/ 25,000</div>
-                  <div class="glass-card__bar"><span style="width:78%"></span></div>
-                  <div class="glass-card__meta"><span>24 cuotas</span><span>Desembolso 24h</span></div>
+                  <div class="glass-card__head"><i class="ri-apps-2-line"></i> Todo en un solo lugar</div>
+                  <ul class="glass-card__list" style="margin-top:1rem">
+                    <li><i class="ri-dashboard-line"></i> Dashboard de créditos</li>
+                    <li><i class="ri-file-list-3-line"></i> Productos Caja Arequipa</li>
+                    <li><i class="ri-calculator-line"></i> Simulador de cuota</li>
+                    <li><i class="ri-megaphone-line"></i> Comunicados internos</li>
+                  </ul>
                 </div>
-                <div class="glass-chip glass-chip--top"><i class="ri-flashlight-line"></i> Evaluación rápida</div>
+                <div class="glass-chip glass-chip--top"><i class="ri-lock-line"></i> Acceso con usuario</div>
               </div>
             </article>
 
             <article class="slide slide--2" aria-roledescription="diapositiva">
               <div class="slide__content">
-                <span class="slide__tag"><i class="ri-safe-2-line"></i> Plazo Fijo</span>
-                <h1 class="slide__title">Tu dinero crece <span>mejor aquí</span></h1>
-                <p class="slide__text">Ahorra con tasas competitivas y respaldo del Fondo de Seguro de Depósitos.</p>
+                <span class="slide__tag"><i class="ri-bar-chart-box-line"></i> Seguimiento</span>
+                <h1 class="slide__title">Controla el avance de <span>tus desembolsos</span></h1>
+                <p class="slide__text">Cada supervisor ve sus créditos desembolsados; la jefatura ve el avance de todo el equipo.</p>
                 <div class="slide__actions">
-                  <a href="#" class="btn btn--light">Abrir depósito</a>
-                  <a href="#productos" class="btn btn--outline-light">Ver tasas</a>
+                  <a href="pages/login.html" class="btn btn--light">Ver mi avance</a>
+                  <a href="#accesos" class="btn btn--outline-light">¿Qué puedo ver?</a>
                 </div>
               </div>
               <div class="slide__visual" aria-hidden="true">
                 <div class="glass-card">
-                  <div class="glass-card__head"><i class="ri-line-chart-line"></i> Rendimiento anual</div>
-                  <div class="bars">
-                    <span style="--h:35%"></span><span style="--h:48%"></span><span style="--h:56%"></span>
-                    <span style="--h:67%"></span><span style="--h:80%"></span><span style="--h:95%"></span>
+                  <div class="glass-card__head"><i class="ri-line-chart-line"></i> Avance de meta (ejemplo)</div>
+                  <div class="glass-card__rows">
+                    <div><div class="row-head"><span>Supervisor A</span><span>82%</span></div><div class="glass-card__bar"><span style="width:82%"></span></div></div>
+                    <div><div class="row-head"><span>Supervisor B</span><span>64%</span></div><div class="glass-card__bar"><span style="width:64%"></span></div></div>
+                    <div><div class="row-head"><span>Supervisor C</span><span>47%</span></div><div class="glass-card__bar"><span style="width:47%"></span></div></div>
                   </div>
-                  <div class="glass-card__meta"><span>TEA referencial</span><span>hasta 7.0%</span></div>
                 </div>
-                <div class="glass-chip glass-chip--bottom"><i class="ri-shield-check-line"></i> Ahorro protegido</div>
+                <div class="glass-chip glass-chip--bottom"><i class="ri-eye-line"></i> Vista por rol</div>
               </div>
             </article>
 
             <article class="slide slide--3" aria-roledescription="diapositiva">
               <div class="slide__content">
-                <span class="slide__tag"><i class="ri-smartphone-line"></i> Banca Digital</span>
-                <h1 class="slide__title">Tu caja en <span>tu bolsillo</span></h1>
-                <p class="slide__text">Paga, transfiere y abre cuentas desde la app, las 24 horas, los 7 días.</p>
+                <span class="slide__tag"><i class="ri-briefcase-4-line"></i> Productos</span>
+                <h1 class="slide__title">Productos <span>Caja Arequipa</span></h1>
+                <p class="slide__text">Negocio, consumo y vivienda: revisa los créditos que ofrecemos y a quién van dirigidos.</p>
                 <div class="slide__actions">
-                  <a href="#app" class="btn btn--light">Descargar app</a>
-                  <a href="#" class="btn btn--outline-light">Conoce más</a>
+                  <a href="#productos" class="btn btn--light">Ver catálogo</a>
+                  <a href="#simulador" class="btn btn--outline-light"><i class="ri-calculator-line"></i> Simular cuota</a>
                 </div>
               </div>
               <div class="slide__visual" aria-hidden="true">
                 <div class="glass-card">
-                  <div class="glass-card__head"><i class="ri-wallet-3-line"></i> Saldo disponible</div>
-                  <div class="glass-card__amount">S/ 8,420.50</div>
-                  <ul class="glass-card__list">
-                    <li><i class="ri-arrow-left-down-line"></i> Depósito <b>+ S/ 1,200</b></li>
-                    <li><i class="ri-arrow-right-up-line"></i> Pago de luz <b>- S/ 86</b></li>
+                  <div class="glass-card__head"><i class="ri-stack-line"></i> Líneas de producto</div>
+                  <ul class="glass-card__list" style="margin-top:1rem">
+                    <li><i class="ri-store-2-line"></i> Negocios <b>5</b></li>
+                    <li><i class="ri-user-smile-line"></i> Consumo <b>4</b></li>
+                    <li><i class="ri-home-4-line"></i> Vivienda <b>4</b></li>
                   </ul>
                 </div>
-                <div class="glass-chip glass-chip--top"><i class="ri-fingerprint-line"></i> Acceso seguro</div>
+                <div class="glass-chip glass-chip--top"><i class="ri-check-double-line"></i> Catálogo vigente</div>
               </div>
             </article>
 
@@ -191,12 +185,12 @@
     <section class="quick" aria-label="Accesos rápidos">
       <div class="container">
         <div class="quick__grid">
-          <a href="#simulador" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-calculator-line"></i></span>Simula tu crédito</a>
-          <a href="#" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-bank-card-line"></i></span>Abre tu cuenta</a>
-          <a href="#" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-hand-coin-line"></i></span>Paga tu crédito</a>
-          <a href="#" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-map-pin-2-line"></i></span>Ubica agencias</a>
-          <a href="#" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-exchange-dollar-line"></i></span>Tipo de cambio</a>
-          <a href="#" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-file-list-3-line"></i></span>Libro de reclamaciones</a>
+          <a href="pages/login.html" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-dashboard-line"></i></span>Mi dashboard</a>
+          <a href="#productos" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-file-list-3-line"></i></span>Productos</a>
+          <a href="#simulador" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-calculator-line"></i></span>Simulador</a>
+          <a href="#accesos" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-shield-user-line"></i></span>Roles y accesos</a>
+          <a href="#comunicados" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-megaphone-line"></i></span>Comunicados</a>
+          <a href="https://wa.me/51921159363?text=Hola%2C%20necesito%20soporte" target="_blank" rel="noopener noreferrer" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-whatsapp-line"></i></span>Soporte</a>
         </div>
       </div>
     </section>
@@ -205,19 +199,63 @@
     <section class="section" id="productos">
       <div class="container">
         <header class="section__head" data-reveal>
-          <span class="eyebrow">Nuestros productos</span>
-          <h2 class="section__title">Encuentra lo que necesitas</h2>
-          <p class="section__text">Soluciones financieras pensadas para cada etapa de tu vida y de tu negocio.</p>
+          <span class="eyebrow">Productos Caja Arequipa</span>
+          <h2 class="section__title">Créditos que colocamos</h2>
+          <p class="section__text">Resumen de cada producto y su público objetivo. Confirma siempre condiciones y tasas en el tarifario vigente.</p>
         </header>
 
         <div class="tabs" data-tabs>
           <div class="tabs__list" role="tablist" data-reveal>
-            <button class="tabs__btn is-active" role="tab" data-tab="creditos" aria-selected="true"><i class="ri-money-dollar-circle-line"></i> Créditos</button>
-            <button class="tabs__btn" role="tab" data-tab="ahorros" aria-selected="false"><i class="ri-safe-2-line"></i> Ahorros</button>
-            <button class="tabs__btn" role="tab" data-tab="seguros" aria-selected="false"><i class="ri-shield-heart-line"></i> Seguros</button>
+            <button class="tabs__btn is-active" role="tab" data-tab="negocios" aria-selected="true"><i class="ri-store-2-line"></i> Negocios</button>
+            <button class="tabs__btn" role="tab" data-tab="consumo" aria-selected="false"><i class="ri-user-smile-line"></i> Consumo</button>
+            <button class="tabs__btn" role="tab" data-tab="vivienda" aria-selected="false"><i class="ri-home-4-line"></i> Vivienda</button>
           </div>
           <!-- Las tarjetas se generan desde assets/js/data/products.js -->
           <div class="tabs__panel" role="tabpanel" data-tab-panel></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ROLES Y ACCESOS ============ -->
+    <section class="section section--soft" id="accesos">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow">Dashboard</span>
+          <h2 class="section__title">¿Qué ve cada usuario?</h2>
+          <p class="section__text">El acceso al dashboard es con usuario y contraseña. Lo que ves depende de tu rol.</p>
+        </header>
+
+        <div class="roles">
+          <article class="role-card" data-reveal>
+            <div class="role-card__icon"><i class="ri-user-line"></i></div>
+            <h3>Supervisor</h3>
+            <p>Seguimiento de su propia cartera.</p>
+            <ul>
+              <li><i class="ri-checkbox-circle-fill"></i> Solo los créditos que desembolsó</li>
+              <li><i class="ri-checkbox-circle-fill"></i> Avance frente a su meta</li>
+              <li><i class="ri-checkbox-circle-fill"></i> Gráficos de su gestión</li>
+            </ul>
+          </article>
+          <article class="role-card role-card--featured" data-reveal>
+            <div class="role-card__icon"><i class="ri-user-star-line"></i></div>
+            <h3>Jefe</h3>
+            <p>Visión completa del equipo.</p>
+            <ul>
+              <li><i class="ri-checkbox-circle-fill"></i> Todos los créditos desembolsados</li>
+              <li><i class="ri-checkbox-circle-fill"></i> Avance y ranking por supervisor</li>
+              <li><i class="ri-checkbox-circle-fill"></i> Gráficos consolidados</li>
+            </ul>
+          </article>
+          <article class="role-card" data-reveal>
+            <div class="role-card__icon"><i class="ri-settings-3-line"></i></div>
+            <h3>Administrador</h3>
+            <p>Gestión del sistema.</p>
+            <ul>
+              <li><i class="ri-checkbox-circle-fill"></i> Crear usuarios y asignar roles</li>
+              <li><i class="ri-checkbox-circle-fill"></i> Cargar la data desde Excel</li>
+              <li><i class="ri-checkbox-circle-fill"></i> Acceso a toda la información</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
@@ -226,13 +264,13 @@
     <section class="section section--dark" id="simulador">
       <div class="container simulator">
         <div class="simulator__info" data-reveal>
-          <span class="eyebrow eyebrow--light">Simulador</span>
-          <h2 class="section__title">Calcula tu cuota en segundos</h2>
-          <p class="section__text">Elige el monto y el plazo, y conoce al instante una cuota referencial. Sin compromiso.</p>
+          <span class="eyebrow eyebrow--light">Herramienta</span>
+          <h2 class="section__title">Simula la cuota para tu cliente</h2>
+          <p class="section__text">Obtén una cuota referencial al instante para orientar al cliente antes de la evaluación.</p>
           <ul class="checklist">
-            <li><i class="ri-check-line"></i> Sin costos ocultos</li>
-            <li><i class="ri-check-line"></i> Cuotas fijas mensuales</li>
-            <li><i class="ri-check-line"></i> Prepagos sin penalidad</li>
+            <li><i class="ri-check-line"></i> Cuota fija mensual</li>
+            <li><i class="ri-check-line"></i> Ajusta la TEA según el producto</li>
+            <li><i class="ri-check-line"></i> Total a pagar estimado</li>
           </ul>
         </div>
 
@@ -270,103 +308,47 @@
             </div>
           </div>
 
-          <button type="button" class="btn btn--primary btn--block">Solicitar este crédito</button>
-          <p class="simulator__note">*Cálculo referencial. La tasa final depende de la evaluación crediticia.</p>
+          <p class="simulator__note">*Cálculo referencial. La tasa y condiciones finales las define la evaluación de Caja Arequipa.</p>
         </form>
       </div>
     </section>
 
-    <!-- ============ CIFRAS ============ -->
-    <section class="stats" aria-label="Nuestras cifras">
-      <div class="container stats__grid">
-        <div class="stat" data-reveal><strong data-count="1200000" data-prefix="+">0</strong><span>Clientes atendidos</span></div>
-        <div class="stat" data-reveal><strong data-count="150">0</strong><span>Agencias a nivel nacional</span></div>
-        <div class="stat" data-reveal><strong data-count="38" data-suffix=" años">0</strong><span>De experiencia</span></div>
-        <div class="stat" data-reveal><strong data-count="5000" data-prefix="+">0</strong><span>Agentes y cajeros</span></div>
-      </div>
-    </section>
-
-    <!-- ============ APP ============ -->
-    <section class="section" id="app">
-      <div class="container app">
-        <div class="app__mockup" data-reveal aria-hidden="true">
-          <div class="phone">
-            <div class="phone__notch"></div>
-            <div class="phone__screen">
-              <div class="phone__hello">Hola, María 👋</div>
-              <div class="phone__balance">
-                <small>Cuenta de ahorros</small>
-                <strong>S/ 8,420.50</strong>
-              </div>
-              <div class="phone__actions">
-                <span><i class="ri-send-plane-line"></i>Transferir</span>
-                <span><i class="ri-bill-line"></i>Pagar</span>
-                <span><i class="ri-qr-code-line"></i>QR</span>
-              </div>
-              <div class="phone__list">
-                <div><i class="ri-shopping-bag-line"></i> Compra <b>- S/ 54</b></div>
-                <div><i class="ri-arrow-left-down-line"></i> Depósito <b>+ S/ 1,200</b></div>
-                <div><i class="ri-flashlight-line"></i> Luz del Sur <b>- S/ 86</b></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="app__info" data-reveal>
-          <span class="eyebrow">Canales digitales</span>
-          <h2 class="section__title">Opera desde donde estés</h2>
-          <p class="section__text">Con nuestra app y banca por internet puedes hacer tus operaciones sin ir a una agencia.</p>
-          <div class="features">
-            <div class="feature"><i class="ri-send-plane-2-line"></i><div><h3>Transferencias</h3><p>Inmediatas a cualquier banco.</p></div></div>
-            <div class="feature"><i class="ri-bill-line"></i><div><h3>Pago de servicios</h3><p>Luz, agua, teléfono y más.</p></div></div>
-            <div class="feature"><i class="ri-hand-coin-line"></i><div><h3>Paga tu crédito</h3><p>Sin colas, en un clic.</p></div></div>
-            <div class="feature"><i class="ri-shield-keyhole-line"></i><div><h3>100% seguro</h3><p>Token y biometría.</p></div></div>
-          </div>
-          <div class="stores">
-            <a href="#" class="store"><i class="ri-google-play-fill"></i><span><small>Disponible en</small>Google Play</span></a>
-            <a href="#" class="store"><i class="ri-apple-fill"></i><span><small>Descárgala en</small>App Store</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ NOTICIAS / PROMOCIONES ============ -->
-    <section class="section section--soft" id="noticias">
+    <!-- ============ COMUNICADOS ============ -->
+    <section class="section" id="comunicados">
       <div class="container">
         <header class="section__head section__head--row" data-reveal>
           <div>
-            <span class="eyebrow">Promociones y noticias</span>
-            <h2 class="section__title">Lo último para ti</h2>
+            <span class="eyebrow">Comunicados internos</span>
+            <h2 class="section__title">Novedades del equipo</h2>
           </div>
-          <a href="#" class="link-arrow">Ver todas <i class="ri-arrow-right-line"></i></a>
         </header>
 
         <div class="news__grid">
           <article class="news-card" data-reveal>
-            <div class="news-card__media news-card__media--1"><i class="ri-gift-line"></i></div>
+            <div class="news-card__media news-card__media--1"><i class="ri-flag-2-line"></i></div>
             <div class="news-card__body">
-              <span class="news-card__tag">Promoción</span>
-              <h3>Sorteo de fin de año para ahorristas</h3>
-              <p>Por cada S/ 100 de ahorro participas en el sorteo de premios.</p>
-              <a href="#" class="link-arrow">Leer más <i class="ri-arrow-right-line"></i></a>
+              <span class="news-card__tag">Metas</span>
+              <h3>Metas del mes publicadas</h3>
+              <p>Revisa en tu dashboard la meta asignada y tu avance de desembolsos.</p>
+              <a href="pages/login.html" class="link-arrow">Ir al dashboard <i class="ri-arrow-right-line"></i></a>
             </div>
           </article>
           <article class="news-card" data-reveal>
-            <div class="news-card__media news-card__media--2"><i class="ri-graduation-cap-line"></i></div>
+            <div class="news-card__media news-card__media--2"><i class="ri-file-shield-2-line"></i></div>
             <div class="news-card__body">
-              <span class="news-card__tag">Educación financiera</span>
-              <h3>5 claves para ordenar las finanzas de tu negocio</h3>
-              <p>Aprende a separar tus gastos personales de los de tu emprendimiento.</p>
-              <a href="#" class="link-arrow">Leer más <i class="ri-arrow-right-line"></i></a>
+              <span class="news-card__tag">Políticas</span>
+              <h3>Recuerda validar requisitos</h3>
+              <p>Antes de enviar un expediente, confirma documentos y condiciones del producto.</p>
+              <a href="#productos" class="link-arrow">Ver productos <i class="ri-arrow-right-line"></i></a>
             </div>
           </article>
           <article class="news-card" data-reveal>
-            <div class="news-card__media news-card__media--3"><i class="ri-building-2-line"></i></div>
+            <div class="news-card__media news-card__media--3"><i class="ri-graduation-cap-line"></i></div>
             <div class="news-card__body">
-              <span class="news-card__tag">Novedades</span>
-              <h3>Nuevas agencias más cerca de ti</h3>
-              <p>Seguimos creciendo para atenderte en más ciudades del país.</p>
-              <a href="#" class="link-arrow">Leer más <i class="ri-arrow-right-line"></i></a>
+              <span class="news-card__tag">Capacitación</span>
+              <h3>Próxima capacitación de productos</h3>
+              <p>Te avisaremos fecha y hora por este medio y por WhatsApp.</p>
+              <a href="https://wa.me/51921159363" target="_blank" rel="noopener noreferrer" class="link-arrow">Consultar <i class="ri-arrow-right-line"></i></a>
             </div>
           </article>
         </div>
@@ -374,16 +356,16 @@
     </section>
 
     <!-- ============ CTA ============ -->
-    <section class="section">
+    <section class="section section--soft">
       <div class="container">
         <div class="cta" data-reveal>
           <div>
-            <h2>¿Listo para empezar?</h2>
-            <p>Abre tu cuenta en minutos o habla con uno de nuestros asesores.</p>
+            <h2>Revisa tu avance</h2>
+            <p>Ingresa con tu usuario y contraseña para ver tus créditos y gráficos.</p>
           </div>
           <div class="cta__actions">
-            <a href="#" class="btn btn--light">Abrir cuenta</a>
-            <a href="#" class="btn btn--outline-light"><i class="ri-whatsapp-line"></i> Hablar con un asesor</a>
+            <a href="pages/login.html" class="btn btn--light"><i class="ri-login-box-line"></i> Ingresar al Dashboard</a>
+            <a href="https://wa.me/51921159363?text=Hola%2C%20necesito%20soporte" target="_blank" rel="noopener noreferrer" class="btn btn--outline-light"><i class="ri-whatsapp-line"></i> Soporte</a>
           </div>
         </div>
       </div>
@@ -394,55 +376,39 @@
   <footer class="footer">
     <div class="container footer__grid">
       <div class="footer__brand">
-        <a href="index.html" class="logo logo--light">
-          <span class="logo__mark">
-            <svg viewBox="0 0 40 40" aria-hidden="true">
-              <rect width="40" height="40" rx="12" fill="currentColor" />
-              <path d="M12 28V12l16 16V12" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </span>
-          <span class="logo__text">Nova<strong>Caja</strong></span>
+        <a href="index.html" class="logo logo--light" aria-label="SEJ Partners inicio">
+          <img src="assets/img/logo-sej-white.png" alt="SEJ Partners S.A.C." class="logo__img" />
         </a>
-        <p>Acompañamos a personas y emprendedores a cumplir sus metas financieras.</p>
-        <div class="socials">
-          <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
-          <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
-          <a href="#" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
-        </div>
+        <p>Portal interno para supervisores y jefatura de SEJ Partners S.A.C.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Portal</h4>
+        <ul>
+          <li><a href="pages/login.html">Dashboard</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#simulador">Simulador</a></li>
+          <li><a href="#comunicados">Comunicados</a></li>
+        </ul>
       </div>
       <div class="footer__col">
         <h4>Productos</h4>
         <ul>
-          <li><a href="#">Créditos</a></li>
-          <li><a href="#">Ahorros</a></li>
-          <li><a href="#">Seguros</a></li>
-          <li><a href="#">Tarjetas</a></li>
+          <li><a href="#productos">Negocios</a></li>
+          <li><a href="#productos">Consumo</a></li>
+          <li><a href="#productos">Vivienda</a></li>
         </ul>
       </div>
       <div class="footer__col">
-        <h4>Nosotros</h4>
+        <h4>Soporte</h4>
         <ul>
-          <li><a href="#">Quiénes somos</a></li>
-          <li><a href="#">Trabaja con nosotros</a></li>
-          <li><a href="#">Transparencia</a></li>
-          <li><a href="pages/dashboard.html">Dashboard</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4>Atención</h4>
-        <ul>
-          <li><i class="ri-phone-line"></i> (01) 555-0000</li>
-          <li><i class="ri-mail-line"></i> contacto@novacaja.pe</li>
+          <li><a href="https://wa.me/51921159363" target="_blank" rel="noopener noreferrer"><i class="ri-whatsapp-line"></i> WhatsApp</a></li>
           <li><i class="ri-time-line"></i> Lun - Sáb: 9:00 - 18:00</li>
-          <li><a href="#"><i class="ri-book-open-line"></i> Libro de reclamaciones</a></li>
         </ul>
       </div>
     </div>
     <div class="footer__bottom">
       <div class="container footer__bottom-inner">
-        <span>© <span data-year></span> NovaCaja. Todos los derechos reservados.</span>
-        <div><a href="#">Privacidad</a><a href="#">Términos</a></div>
+        <span>© <span data-year></span> SEJ Partners S.A.C. Uso interno.</span>
       </div>
     </div>
   </footer>

@@ -1,24 +1,26 @@
 /* =========================================================
-   VARIABLES (Design tokens)
+   VARIABLES (Design tokens) — Marca SEJ Partners
    Cambia estos valores para cambiar toda la marca.
    ========================================================= */
 :root {
-  /* Colores de marca */
-  --color-primary: #d7193a;
-  --color-primary-dark: #a80f2b;
-  --color-primary-soft: #fdecef;
-  --color-accent: #f5a524;
-  --color-dark: #0f172a;
-  --color-dark-2: #1e293b;
+  /* Colores de marca: azul, negro y blanco */
+  --color-primary: #0a3e7c;          /* Azul del logo */
+  --color-primary-rgb: 10, 62, 124;  /* Mismo azul en RGB (para transparencias) */
+  --color-primary-dark: #072c59;
+  --color-primary-light: #2f7bd8;
+  --color-primary-soft: #e8eff8;
+  --color-accent: #7fb3ec;           /* Azul claro para resaltar sobre fondos oscuros */
+  --color-dark: #0b0f17;             /* Negro */
+  --color-dark-2: #1a2130;
 
   /* Neutros */
-  --color-text: #0f172a;
-  --color-text-muted: #64748b;
+  --color-text: #0b0f17;
+  --color-text-muted: #5b6577;
   --color-bg: #ffffff;
-  --color-bg-soft: #f6f7fb;
-  --color-border: #e5e7eb;
+  --color-bg-soft: #f4f6fa;
+  --color-border: #e3e7ee;
   --color-white: #ffffff;
-  --color-success: #16a34a;
+  --color-success: #0a3e7c;
 
   /* Tipografía */
   --font-base: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -39,9 +41,9 @@
   --radius-full: 999px;
 
   /* Sombras */
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.12);
+  --shadow-sm: 0 1px 2px rgba(11, 15, 23, 0.06);
+  --shadow-md: 0 8px 24px rgba(11, 15, 23, 0.08);
+  --shadow-lg: 0 20px 50px rgba(11, 15, 23, 0.12);
 
   /* Movimiento */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);

@@ -297,3 +297,8 @@
   .logo__mark { width: 34px; height: 34px; }
   .logo__text { font-size: 1.2rem; }
 }
+
+/* ---------- Logo como imagen (SEJ Partners) ---------- */
+.logo__img { height: 40px; width: auto; }
+.logo--light .logo__img { height: 44px; }
+@media (max-width: 640px) { .logo__img { height: 32px; } }

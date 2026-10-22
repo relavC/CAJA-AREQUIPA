@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ingresar | SEJ Partners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <script type="module" src="../assets/js/pages/login.js"></script>
+</head>
+<body>
+  <main class="login">
+    <!-- Panel izquierdo (marca) -->
+    <aside class="login__brand">
+      <a href="../index.html" class="login__back"><i class="ri-arrow-left-line"></i> Volver al portal</a>
+      <div>
+        <img src="../assets/img/logo-sej-white.png" alt="SEJ Partners S.A.C." class="login__logo" />
+        <h1>Dashboard de créditos</h1>
+        <p>Revisa tus desembolsos, el avance de tu meta y los gráficos de gestión.</p>
+      </div>
+      <ul class="login__points">
+        <li><i class="ri-user-line"></i> Supervisor: tus créditos</li>
+        <li><i class="ri-user-star-line"></i> Jefe: todo el equipo</li>
+        <li><i class="ri-settings-3-line"></i> Administrador: usuarios y data</li>
+      </ul>
+    </aside>
+
+    <!-- Formulario -->
+    <section class="login__panel">
+      <form class="login__form" data-login-form novalidate>
+        <img src="../assets/img/logo-sej.png" alt="SEJ Partners S.A.C." class="login__logo-mobile" />
+        <h2>Iniciar sesión</h2>
+        <p class="login__subtitle">Ingresa con el usuario asignado por el administrador.</p>
+
+        <div class="field">
+          <label for="loginUser">Usuario o correo</label>
+          <div class="input-icon">
+            <i class="ri-user-line"></i>
+            <input type="text" id="loginUser" name="user" autocomplete="username" placeholder="usuario@sejpartners.pe" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="loginPass">Contraseña</label>
+          <div class="input-icon">
+            <i class="ri-lock-line"></i>
+            <input type="password" id="loginPass" name="password" autocomplete="current-password" placeholder="••••••••" required />
+            <button type="button" class="input-icon__toggle" data-toggle-pass aria-label="Mostrar contraseña"><i class="ri-eye-line"></i></button>
+          </div>
+        </div>
+
+        <p class="login__error" data-login-error role="alert" hidden></p>
+
+        <button type="submit" class="btn btn--primary btn--block"><i class="ri-login-box-line"></i> Ingresar</button>
+
+        <p class="login__help">¿Olvidaste tu contraseña? <a href="https://wa.me/51921159363?text=Hola%2C%20olvid%C3%A9%20mi%20contrase%C3%B1a%20del%20dashboard" target="_blank" rel="noopener noreferrer">Escríbenos</a></p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

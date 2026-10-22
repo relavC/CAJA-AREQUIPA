@@ -58,9 +58,9 @@
   background: rgba(255, 255, 255, 0.06);
 }
 
-.slide--1 { background: linear-gradient(125deg, #d7193a 0%, #8f0e2c 100%); }
-.slide--2 { background: linear-gradient(125deg, #1e293b 0%, #3730a3 100%); }
-.slide--3 { background: linear-gradient(125deg, #0f766e 0%, #134e4a 100%); }
+.slide--1 { background: linear-gradient(125deg, #0a3e7c 0%, #05213f 100%); }
+.slide--2 { background: linear-gradient(125deg, #111827 0%, #0a3e7c 100%); }
+.slide--3 { background: linear-gradient(125deg, #1e5aa8 0%, #0a3e7c 100%); }
 
 .slide__content,
 .slide__visual {

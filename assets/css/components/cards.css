@@ -108,9 +108,9 @@
 .news-card__media i { transition: transform var(--t-base) var(--ease); }
 .news-card:hover .news-card__media i { transform: scale(1.15) rotate(-6deg); }
 
-.news-card__media--1 { background: linear-gradient(135deg, #d7193a, #f5a524); }
-.news-card__media--2 { background: linear-gradient(135deg, #3730a3, #0ea5e9); }
-.news-card__media--3 { background: linear-gradient(135deg, #0f766e, #22c55e); }
+.news-card__media--1 { background: linear-gradient(135deg, #0a3e7c, #2f7bd8); }
+.news-card__media--2 { background: linear-gradient(135deg, #111827, #0a3e7c); }
+.news-card__media--3 { background: linear-gradient(135deg, #1e5aa8, #7fb3ec); }
 
 .news-card__body {
   display: flex;
