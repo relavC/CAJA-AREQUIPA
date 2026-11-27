@@ -169,7 +169,7 @@ export function render(el) {
             ${pagina.map((r) => `
               <tr>
                 <td class="nowrap" data-status="${esc(isoRegistro(r))}">${status(isoRegistro(r))}</td>
-                <td class="nowrap">${esc(r.fecha_hora)}${r.editado_en ? `<small class="muted-line" title="Editado el ${esc(r.editado_en)}"><i class="ri-edit-line"></i> editado</small>` : ''}</td>
+                <td class="nowrap">${esc(store.sinSegundos(r.fecha_hora))}${r.editado_en ? `<small class="muted-line" title="Editado el ${esc(store.sinSegundos(r.editado_en))}"><i class="ri-edit-line"></i> editado</small>` : ''}</td>
                 <td>${esc(r.supervisor)}</td>
                 <td class="nowrap">${esc(r.dni_asesor)}</td>
                 <td class="nowrap">${docCliente(r)}</td>
@@ -222,7 +222,7 @@ export function render(el) {
     if (id && !r) { toast('El registro ya no existe.', 'bad'); pintar(); return; }
     $('[data-form-titulo]', el).textContent = r ? 'Editar registro' : 'Nuevo registro';
     $('[data-form-meta]', el).innerHTML = r
-      ? `<i class="ri-time-line"></i> Registrado el <b>${esc(r.fecha_hora)}</b>${r.editado_en ? ` · editado el ${esc(r.editado_en)}` : ''}`
+      ? `<i class="ri-time-line"></i> Registrado el <b>${esc(store.sinSegundos(r.fecha_hora))}</b>${r.editado_en ? ` · editado el ${esc(store.sinSegundos(r.editado_en))}` : ''}`
       : '<i class="ri-time-line"></i> La fecha y hora se guardarán al momento de guardar.';
     if (r) ['supervisor', 'dni_asesor', 'monto', 'agencia', 'analista', 'comentario'].forEach((k) => { form[k].value = r[k] ?? ''; });
     form.tipo_doc_cliente.value = (r && TIPOS_DOC[r.tipo_doc_cliente]) ? r.tipo_doc_cliente : 'DNI';
@@ -276,7 +276,7 @@ export function render(el) {
     $('[data-borrar-texto]', el).innerHTML = `
       <p>¿Seguro que deseas eliminar este registro? Esta acción no se puede deshacer.</p>
       <ul class="modal__resumen">
-        <li><span>Fecha</span><b>${esc(r.fecha_hora)}</b></li>
+        <li><span>Fecha</span><b>${esc(store.sinSegundos(r.fecha_hora))}</b></li>
         <li><span>Supervisor</span><b>${esc(r.supervisor)}</b></li>
         <li><span>DNI_Asesor</span><b>${esc(r.dni_asesor)}</b></li>
         <li><span>Documento cliente</span><b>${docCliente(r)}</b></li>

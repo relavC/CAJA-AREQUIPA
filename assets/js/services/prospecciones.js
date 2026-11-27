@@ -11,6 +11,9 @@ export const fechaHora = (d = new Date()) =>
   `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()} ` +
   `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
 
+/** Quita los segundos para mostrar: '27/11/2026 21:05:23' -> '27/11/2026 21:05' */
+export const sinSegundos = (texto) => String(texto ?? '').replace(/(\d{1,2}:\d{2}):\d{2}$/, '$1');
+
 const nuevoId = () =>
   (crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`);
 

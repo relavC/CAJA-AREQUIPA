@@ -6,7 +6,7 @@
 import { $ } from '../utils/helpers.js';
 import { initHeader } from '../modules/header.js';
 import { SUPERVISORES, AGENCIAS } from '../data/prospecciones.js';
-import { crear, fechaHora } from '../services/prospecciones.js';
+import { crear, fechaHora, sinSegundos } from '../services/prospecciones.js';
 import { conectarDocumento, aplicarTipoDoc, opcionesTipoDoc, errorDoc } from '../utils/documento.js';
 
 initHeader();
@@ -77,7 +77,7 @@ form.addEventListener('submit', (e) => {
 
   try {
     const registro = crear(Object.fromEntries(new FormData(form)));
-    okBox.innerHTML = `<i class="ri-checkbox-circle-fill"></i> Prospección registrada el <b>${esc(registro.fecha_hora)}</b>.`;
+    okBox.innerHTML = `<i class="ri-checkbox-circle-fill"></i> Prospección registrada el <b>${esc(sinSegundos(registro.fecha_hora))}</b>.`;
     okBox.hidden = false;
     form.reset();
   } catch (err) {
