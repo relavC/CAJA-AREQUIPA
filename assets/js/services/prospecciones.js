@@ -24,6 +24,7 @@ function leer() {
   let cambio = false;
   lista.forEach((r) => {
     if (!r.id) { r.id = nuevoId(); cambio = true; }
+    if (!r.estado_credito) { r.estado_credito = 'REFERIDO'; cambio = true; }
     if ('dni_cliente' in r) {
       if (!r.doc_cliente && r.dni_cliente) { r.tipo_doc_cliente = 'DNI'; r.doc_cliente = r.dni_cliente; }
       delete r.dni_cliente;
@@ -41,6 +42,18 @@ function escribir(lista) {
     throw new Error('No se pudo guardar en este navegador (almacenamiento bloqueado o lleno).');
   }
 }
+
+/** Status del crédito (el primero es el valor por defecto al registrar) */
+export const ESTADOS_CREDITO = [
+  { valor: 'REFERIDO',     nombre: 'Referido' },
+  { valor: 'PENDIENTE',    nombre: 'Pendiente' },
+  { valor: 'DESEMBOLSADO', nombre: 'Desembolsado' },
+  { valor: 'PERDIDO',      nombre: 'Perdido' },
+  { valor: 'PROXIMO',      nombre: 'Próximo' },
+];
+const ESTADO_INICIAL = ESTADOS_CREDITO[0].valor;
+const esEstado = (v) => ESTADOS_CREDITO.some((e) => e.valor === v);
+export const nombreEstado = (v) => ESTADOS_CREDITO.find((e) => e.valor === v)?.nombre ?? '';
 
 const CAMPOS = ['supervisor', 'dni_asesor', 'tipo_doc_cliente', 'doc_cliente', 'agencia', 'analista', 'comentario'];
 
@@ -64,7 +77,10 @@ export const obtener = (id) => leer().find((r) => r.id === id) || null;
 /** Crea un registro; la fecha y hora se toman en este momento */
 export function crear(datos) {
   const ahora = new Date();
-  const registro = { id: nuevoId(), fecha_hora: fechaHora(ahora), registrado_en: ahora.toISOString(), ...limpiar(datos) };
+  const registro = {
+    id: nuevoId(), fecha_hora: fechaHora(ahora), registrado_en: ahora.toISOString(), ...limpiar(datos),
+    estado_credito: esEstado(datos.estado_credito) ? datos.estado_credito : ESTADO_INICIAL,
+  };
   const lista = leer();
   lista.push(registro);
   escribir(lista);
@@ -76,9 +92,23 @@ export function actualizar(id, datos) {
   const lista = leer();
   const i = lista.findIndex((r) => r.id === id);
   if (i < 0) throw new Error('El registro ya no existe.');
-  lista[i] = { ...lista[i], ...limpiar(datos), editado_en: fechaHora() };
+  const estado = esEstado(datos.estado_credito) ? datos.estado_credito : lista[i].estado_credito;
+  if (estado !== lista[i].estado_credito) lista[i].estado_en = fechaHora();
+  lista[i] = { ...lista[i], ...limpiar(datos), estado_credito: estado, editado_en: fechaHora() };
   escribir(lista);
   return lista[i];
+}
+
+/** Cambia solo el status del crédito (desde el desplegable de la tabla) */
+export function cambiarEstado(id, estado) {
+  if (!esEstado(estado)) throw new Error('Status de crédito no válido.');
+  const lista = leer();
+  const r = lista.find((x) => x.id === id);
+  if (!r) throw new Error('El registro ya no existe.');
+  r.estado_credito = estado;
+  r.estado_en = fechaHora();
+  escribir(lista);
+  return r;
 }
 
 export function eliminar(id) {
@@ -87,12 +117,12 @@ export function eliminar(id) {
 
 /** Descarga los registros en CSV (separado por ; para Excel en español) */
 export function descargarCSV(lista = listar()) {
-  const cab = ['Fecha y hora', 'Supervisor', 'DNI_Asesor', 'Tipo_Doc_Cliente', 'Doc_Cliente', 'Monto (S/)', 'Agencia', 'Analista', 'Comentario', 'Editado'];
+  const cab = ['Fecha y hora', 'Supervisor', 'DNI_Asesor', 'Tipo_Doc_Cliente', 'Doc_Cliente', 'Monto (S/)', 'Status crédito', 'Agencia', 'Analista', 'Comentario', 'Editado'];
   const texto = (v) => (v ? `="${v}"` : '""');           // conserva ceros a la izquierda en Excel
   const monto = (v) => (v == null ? '' : Number(v).toFixed(2).replace('.', ','));
   const campo = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
   const filas = lista.map((r) => [
-    campo(r.fecha_hora), campo(r.supervisor), texto(r.dni_asesor), campo(r.tipo_doc_cliente || ''), texto(r.doc_cliente), monto(r.monto), campo(r.agencia),
+    campo(r.fecha_hora), campo(r.supervisor), texto(r.dni_asesor), campo(r.tipo_doc_cliente || ''), texto(r.doc_cliente), monto(r.monto), campo(nombreEstado(r.estado_credito || ESTADO_INICIAL)), campo(r.agencia),
     campo(r.analista), campo(r.comentario), campo(r.editado_en || ''),
   ].join(';'));
   const csv = '﻿' + [cab.map(campo).join(';'), ...filas].join('\r\n');

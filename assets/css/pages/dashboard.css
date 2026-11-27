@@ -478,3 +478,21 @@
   .toolbar .control.grow { flex-basis: 100%; }
   .toolbar .control select { font-size: 0.85rem; }
 }
+
+/* ---------- Status del crédito (desplegable en la tabla) ---------- */
+.table .estado-select {
+  appearance: none; -webkit-appearance: none;
+  min-width: 132px; padding: 0.35rem 1.9rem 0.35rem 0.75rem !important;
+  border-radius: var(--radius-full) !important; border: 1px solid transparent !important;
+  font: inherit; font-size: var(--fs-xs); font-weight: 700; cursor: pointer;
+  background-repeat: no-repeat; background-position: right 0.6rem center; background-size: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23334155' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.table .estado-select:focus { outline: none; box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.18); }
+.table .estado-select.estado--REFERIDO     { background-color: #e8eff8; color: #0a3e7c; }
+.table .estado-select.estado--PENDIENTE    { background-color: #fef7d6; color: #8a6100; }
+.table .estado-select.estado--DESEMBOLSADO { background-color: #e6f4ea; color: #137333; }
+.table .estado-select.estado--PERDIDO      { background-color: #fdecec; color: #b42318; }
+.table .estado-select.estado--PROXIMO      { background-color: #f1ebfd; color: #5b33b6; }
+.table .estado-select option { background: #fff; color: var(--color-text); }
+@media (min-width: 901px) { .toolbar .control.grow { min-width: 240px; } }

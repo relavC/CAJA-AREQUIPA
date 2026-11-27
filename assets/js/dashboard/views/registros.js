@@ -18,6 +18,13 @@ const soles = (v) => (v == null || v === '' ? '—' : `S/ ${fmtSoles.format(Numb
 
 const POR_PAGINA = 15;
 
+/** Desplegable de status del crédito (con color según el valor) */
+const selectEstado = (r) => `
+  <select class="estado-select estado--${esc(r.estado_credito)}" data-estado="${esc(r.id)}" aria-label="Status del crédito"
+    ${r.estado_en ? `title="Último cambio: ${esc(store.sinSegundos(r.estado_en))}"` : ''}>
+    ${store.ESTADOS_CREDITO.map((e) => `<option value="${e.valor}"${e.valor === r.estado_credito ? ' selected' : ''}>${e.nombre}</option>`).join('')}
+  </select>`;
+
 /* ---------- Status: tiempo desde el registro ----------
    Verde: 0 a menos de 12 h · Amarillo: 12 a menos de 24 h · Rojo: 24 h o más */
 const LIMITE_VERDE = 12;
@@ -44,7 +51,7 @@ const opciones = (lista, sel = '') =>
   lista.map((v) => `<option value="${esc(v)}"${v === sel ? ' selected' : ''}>${esc(v)}</option>`).join('');
 
 export function render(el) {
-  const f = { texto: '', supervisor: '', agencia: '', pagina: 1 };
+  const f = { texto: '', supervisor: '', agencia: '', estado: '', pagina: 1 };
 
   el.innerHTML = `
     <section class="panel">
@@ -66,6 +73,8 @@ export function render(el) {
             <select data-f="supervisor"><option value="">Todos</option>${opciones(SUPERVISORES)}</select></label>
           <label class="control"><span>Agencia</span>
             <select data-f="agencia"><option value="">Todas</option>${opciones(AGENCIAS)}</select></label>
+          <label class="control"><span>Status crédito</span>
+            <select data-f="estado"><option value="">Todos</option>${store.ESTADOS_CREDITO.map((e) => `<option value="${e.valor}">${e.nombre}</option>`).join('')}</select></label>
         </div>
         <div class="status-legend">
           <span>Status (tiempo desde el registro):</span>
@@ -96,6 +105,8 @@ export function render(el) {
               <input name="doc_cliente" required autocomplete="off" /></label>
             <label class="control"><span>Monto (S/) *</span>
               <div class="input-prefix"><span>S/</span><input type="number" name="monto" required min="0.01" step="0.01" inputmode="decimal" placeholder="0.00" /></div></label>
+            <label class="control"><span>Status del crédito *</span>
+              <select name="estado_credito" required>${store.ESTADOS_CREDITO.map((e) => `<option value="${e.valor}">${e.nombre}</option>`).join('')}</select></label>
             <label class="control"><span>Agencia *</span>
               <select name="agencia" required><option value="">Selecciona</option>${opciones(AGENCIAS)}</select></label>
             <label class="control"><span>Analista asignado *</span>
@@ -140,6 +151,7 @@ export function render(el) {
     return store.listar().filter((r) =>
       (!f.supervisor || r.supervisor === f.supervisor) &&
       (!f.agencia || r.agencia === f.agencia) &&
+      (!f.estado || r.estado_credito === f.estado) &&
       (!t || [r.fecha_hora, r.supervisor, r.dni_asesor, r.doc_cliente, r.agencia, r.analista, r.comentario]
         .some((v) => String(v).toLowerCase().includes(t))));
   }
@@ -162,13 +174,14 @@ export function render(el) {
       <div class="table-wrap">
         <table class="table table--registros">
           <thead><tr>
-            <th>Status</th><th>Fecha y hora</th><th>Supervisor</th><th>DNI_Asesor</th><th>Documento cliente</th><th class="num">Monto</th><th>Agencia</th>
+            <th>Status</th><th>Status crédito</th><th>Fecha y hora</th><th>Supervisor</th><th>DNI_Asesor</th><th>Documento cliente</th><th class="num">Monto</th><th>Agencia</th>
             <th>Analista</th><th>Comentario</th><th class="actions-col">Acciones</th>
           </tr></thead>
           <tbody>
             ${pagina.map((r) => `
               <tr>
                 <td class="nowrap" data-status="${esc(isoRegistro(r))}">${status(isoRegistro(r))}</td>
+                <td class="nowrap">${selectEstado(r)}</td>
                 <td class="nowrap">${esc(store.sinSegundos(r.fecha_hora))}${r.editado_en ? `<small class="muted-line" title="Editado el ${esc(store.sinSegundos(r.editado_en))}"><i class="ri-edit-line"></i> editado</small>` : ''}</td>
                 <td>${esc(r.supervisor)}</td>
                 <td class="nowrap">${esc(r.dni_asesor)}</td>
@@ -203,6 +216,22 @@ export function render(el) {
     pintar();
   }));
 
+  // Cambio de status del crédito directo desde la tabla
+  tabla.addEventListener('change', (e) => {
+    const sel = e.target.closest('[data-estado]');
+    if (!sel) return;
+    try {
+      const r = store.cambiarEstado(sel.dataset.estado, sel.value);
+      sel.className = `estado-select estado--${r.estado_credito}`;
+      sel.title = `Último cambio: ${store.sinSegundos(r.estado_en)}`;
+      toast(`Status del crédito: ${store.nombreEstado(r.estado_credito)}.`);
+      if (f.estado && f.estado !== r.estado_credito) pintar(); // ya no cumple el filtro
+    } catch (err) {
+      toast(err.message, 'bad');
+      pintar();
+    }
+  });
+
   tabla.addEventListener('click', (e) => {
     const pag = e.target.closest('[data-pag]');
     if (pag) { f.pagina += Number(pag.dataset.pag); pintar(); return; }
@@ -225,6 +254,7 @@ export function render(el) {
       ? `<i class="ri-time-line"></i> Registrado el <b>${esc(store.sinSegundos(r.fecha_hora))}</b>${r.editado_en ? ` · editado el ${esc(store.sinSegundos(r.editado_en))}` : ''}`
       : '<i class="ri-time-line"></i> La fecha y hora se guardarán al momento de guardar.';
     if (r) ['supervisor', 'dni_asesor', 'monto', 'agencia', 'analista', 'comentario'].forEach((k) => { form[k].value = r[k] ?? ''; });
+    form.estado_credito.value = r?.estado_credito || store.ESTADOS_CREDITO[0].valor;
     form.tipo_doc_cliente.value = (r && TIPOS_DOC[r.tipo_doc_cliente]) ? r.tipo_doc_cliente : 'DNI';
     aplicarTipoDoc(form.tipo_doc_cliente, form.doc_cliente);
     form.doc_cliente.value = r?.doc_cliente ?? '';
@@ -281,6 +311,7 @@ export function render(el) {
         <li><span>DNI_Asesor</span><b>${esc(r.dni_asesor)}</b></li>
         <li><span>Documento cliente</span><b>${docCliente(r)}</b></li>
         <li><span>Monto</span><b>${soles(r.monto)}</b></li>
+        <li><span>Status crédito</span><b>${esc(store.nombreEstado(r.estado_credito))}</b></li>
         <li><span>Agencia</span><b>${esc(r.agencia)}</b></li>
       </ul>`;
     dlgBorrar.showModal();
