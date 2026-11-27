@@ -10,8 +10,6 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/main.css" />
 
-  <!-- SheetJS: leer el Excel y descargar reportes -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script type="module" src="../assets/js/dashboard/app.js"></script>
 </head>
 <body class="app-body">
@@ -48,11 +46,7 @@
           <h1 data-view-title>Resumen</h1>
           <span data-view-subtitle></span>
         </div>
-        <label class="appbar__period">
-          <i class="ri-calendar-2-line"></i>
-          <span class="sr-only">Mes</span>
-          <input type="month" data-periodo />
-        </label>
+        <span class="tag tag--info"><i class="ri-information-line"></i> Datos referenciales</span>
       </header>
 
       <main class="app__content" data-view></main>

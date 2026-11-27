@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SEJ Partners S.A.C. - Portal interno para supervisores y jefatura." />
-  <title>SEJ Partners | Portal interno</title>
+  <meta name="description" content="SEJ Partners S.A.C. - Análisis de datos y créditos Caja Arequipa." />
+  <title>SEJ Partners | Inicio</title>
 
   <!-- Evita parpadeo de animaciones: marca que JS está activo -->
   <script>document.documentElement.classList.add('js');</script>
@@ -21,25 +21,7 @@
   <!-- JS modular -->
   <script type="module" src="assets/js/main.js"></script>
 </head>
-<body>
-
-  <!-- ============ TOPBAR ============ -->
-  <div class="topbar">
-    <div class="container topbar__inner">
-      <nav class="topbar__segments" aria-label="Portal">
-        <span class="topbar__segment is-active">Portal interno</span>
-      </nav>
-      <ul class="topbar__links">
-        <li><a href="#comunicados"><i class="ri-megaphone-line"></i> Comunicados</a></li>
-        <li><a href="#productos"><i class="ri-file-list-3-line"></i> Productos</a></li>
-        <li>
-          <a href="https://wa.me/51921159363?text=Hola%2C%20necesito%20soporte" target="_blank" rel="noopener noreferrer">
-            <i class="ri-whatsapp-line"></i> Soporte
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+<body class="home">
 
   <!-- ============ HEADER ============ -->
   <header class="header" data-header>
@@ -50,39 +32,11 @@
 
       <nav class="nav" id="mainNav" data-nav aria-label="Menú principal">
         <ul class="nav__list">
-          <li class="nav__item"><a href="index.html" class="nav__link">Inicio</a></li>
-          <li class="nav__item nav__item--dropdown">
-            <button class="nav__link" data-dropdown-toggle aria-expanded="false">
-              Productos <i class="ri-arrow-down-s-line"></i>
-            </button>
-            <ul class="dropdown">
-              <li><a href="#productos" data-go-tab="negocios"><i class="ri-store-2-line"></i> Créditos de negocio</a></li>
-              <li><a href="#productos" data-go-tab="consumo"><i class="ri-user-smile-line"></i> Créditos de consumo</a></li>
-              <li><a href="#productos" data-go-tab="vivienda"><i class="ri-home-4-line"></i> Créditos de vivienda</a></li>
-            </ul>
-          </li>
-          <li class="nav__item nav__item--dropdown">
-            <button class="nav__link" data-dropdown-toggle aria-expanded="false">
-              Herramientas <i class="ri-arrow-down-s-line"></i>
-            </button>
-            <ul class="dropdown">
-              <li><a href="#simulador"><i class="ri-calculator-line"></i> Simulador de cuota</a></li>
-              <li><a href="#accesos"><i class="ri-shield-user-line"></i> Roles y accesos</a></li>
-              <li><a href="https://wa.me/51921159363" target="_blank" rel="noopener noreferrer"><i class="ri-whatsapp-line"></i> Soporte por WhatsApp</a></li>
-            </ul>
-          </li>
-          <li class="nav__item"><a href="#comunicados" class="nav__link">Comunicados</a></li>
+          <li class="nav__item"><a href="index.html" class="nav__link is-current" aria-current="page"><i class="ri-home-4-line"></i> Inicio</a></li>
+          <li class="nav__item"><a href="pages/herramientas.html" class="nav__link"><i class="ri-tools-line"></i> Herramientas</a></li>
+          <li class="nav__item"><a href="pages/login.html" class="nav__link"><i class="ri-dashboard-line"></i> Dashboard</a></li>
         </ul>
-
-        <!-- Acción visible solo en el menú móvil -->
-        <div class="nav__mobile-actions">
-          <a href="pages/login.html" class="btn btn--primary btn--block"><i class="ri-dashboard-line"></i> Ingresar al Dashboard</a>
-        </div>
       </nav>
-
-      <div class="header__actions">
-        <a href="pages/login.html" class="btn btn--primary"><i class="ri-dashboard-line"></i> Ingresar al Dashboard</a>
-      </div>
 
       <button class="burger" data-burger aria-label="Abrir menú" aria-controls="mainNav" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -98,73 +52,92 @@
         <div class="slider" data-slider data-interval="6000" aria-roledescription="carrusel" tabindex="0">
           <div class="slider__track">
 
+            <!-- 1. Análisis de datos -->
             <article class="slide slide--1" aria-roledescription="diapositiva">
               <div class="slide__content">
-                <span class="slide__tag"><i class="ri-team-line"></i> Portal de supervisores</span>
-                <h1 class="slide__title">Bienvenido al portal <span>SEJ Partners</span></h1>
-                <p class="slide__text">Aquí encuentras los productos que colocamos, herramientas de apoyo y el acceso a tu dashboard de resultados.</p>
+                <span class="slide__tag"><i class="ri-bar-chart-box-line"></i> Análisis de datos</span>
+                <h1 class="slide__title">Datos que impulsan <span>mejores decisiones</span></h1>
+                <p class="slide__text">Convertimos la información de colocaciones en indicadores claros: desembolsos, avance de metas y tendencias por agencia.</p>
                 <div class="slide__actions">
-                  <a href="pages/login.html" class="btn btn--light">Ingresar al Dashboard</a>
-                  <a href="#productos" class="btn btn--outline-light">Ver productos</a>
+                  <a href="pages/login.html" class="btn btn--light"><i class="ri-dashboard-line"></i> Ir al Dashboard</a>
+                  <a href="pages/herramientas.html" class="btn btn--outline-light"><i class="ri-tools-line"></i> Herramientas</a>
                 </div>
               </div>
               <div class="slide__visual" aria-hidden="true">
                 <div class="glass-card">
-                  <div class="glass-card__head"><i class="ri-apps-2-line"></i> Todo en un solo lugar</div>
-                  <ul class="glass-card__list" style="margin-top:1rem">
-                    <li><i class="ri-dashboard-line"></i> Dashboard de créditos</li>
-                    <li><i class="ri-file-list-3-line"></i> Productos Caja Arequipa</li>
-                    <li><i class="ri-calculator-line"></i> Simulador de cuota</li>
-                    <li><i class="ri-megaphone-line"></i> Comunicados internos</li>
-                  </ul>
+                  <div class="glass-card__head"><i class="ri-line-chart-line"></i> Desembolsos mensuales (referencial)</div>
+                  <svg class="spark" viewBox="0 0 300 120" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#7fb3ec" stop-opacity="0.55" />
+                        <stop offset="100%" stop-color="#7fb3ec" stop-opacity="0" />
+                      </linearGradient>
+                    </defs>
+                    <g class="spark__grid">
+                      <line x1="0" y1="30" x2="300" y2="30" />
+                      <line x1="0" y1="60" x2="300" y2="60" />
+                      <line x1="0" y1="90" x2="300" y2="90" />
+                    </g>
+                    <path class="spark__area" d="M0,95 L50,82 L100,88 L150,60 L200,52 L250,34 L300,20 L300,120 L0,120 Z" fill="url(#sparkFill)" />
+                    <path class="spark__line" d="M0,95 L50,82 L100,88 L150,60 L200,52 L250,34 L300,20" />
+                    <circle class="spark__dot" cx="300" cy="20" r="5" />
+                  </svg>
+                  <div class="glass-card__meta"><span>Ene</span><span>Mar</span><span>May</span><span>Jul</span></div>
                 </div>
-                <div class="glass-chip glass-chip--top"><i class="ri-lock-line"></i> Acceso con usuario</div>
+                <div class="glass-chip glass-chip--top"><i class="ri-arrow-right-up-line"></i> +18% vs mes anterior</div>
               </div>
             </article>
 
+            <!-- 2. Créditos Caja Arequipa -->
             <article class="slide slide--2" aria-roledescription="diapositiva">
               <div class="slide__content">
-                <span class="slide__tag"><i class="ri-bar-chart-box-line"></i> Seguimiento</span>
-                <h1 class="slide__title">Controla el avance de <span>tus desembolsos</span></h1>
-                <p class="slide__text">Cada supervisor ve sus créditos desembolsados; la jefatura ve el avance de todo el equipo.</p>
+                <span class="slide__tag"><i class="ri-bank-line"></i> Créditos Caja Arequipa</span>
+                <h1 class="slide__title">Créditos para <span>negocio, consumo y vivienda</span></h1>
+                <p class="slide__text">Acompañamos la colocación de los productos de Caja Arequipa y medimos su distribución por tipo de crédito.</p>
                 <div class="slide__actions">
-                  <a href="pages/login.html" class="btn btn--light">Ver mi avance</a>
-                  <a href="#accesos" class="btn btn--outline-light">¿Qué puedo ver?</a>
+                  <a href="pages/herramientas.html" class="btn btn--light"><i class="ri-file-edit-line"></i> Registrar solicitud</a>
+                  <a href="pages/login.html" class="btn btn--outline-light">Ver indicadores</a>
                 </div>
               </div>
               <div class="slide__visual" aria-hidden="true">
                 <div class="glass-card">
-                  <div class="glass-card__head"><i class="ri-line-chart-line"></i> Avance de meta (ejemplo)</div>
-                  <div class="glass-card__rows">
-                    <div><div class="row-head"><span>Supervisor A</span><span>82%</span></div><div class="glass-card__bar"><span style="width:82%"></span></div></div>
-                    <div><div class="row-head"><span>Supervisor B</span><span>64%</span></div><div class="glass-card__bar"><span style="width:64%"></span></div></div>
-                    <div><div class="row-head"><span>Supervisor C</span><span>47%</span></div><div class="glass-card__bar"><span style="width:47%"></span></div></div>
+                  <div class="glass-card__head"><i class="ri-pie-chart-2-line"></i> Cartera por producto (referencial)</div>
+                  <div class="donut-wrap">
+                    <div class="donut"><span>100%</span></div>
+                    <ul class="legend">
+                      <li><i style="--c:#7fb3ec"></i> Negocio <b>55%</b></li>
+                      <li><i style="--c:#ffffff"></i> Consumo <b>30%</b></li>
+                      <li><i style="--c:#2f7bd8"></i> Vivienda <b>15%</b></li>
+                    </ul>
                   </div>
                 </div>
-                <div class="glass-chip glass-chip--bottom"><i class="ri-eye-line"></i> Vista por rol</div>
+                <div class="glass-chip glass-chip--bottom"><i class="ri-store-2-line"></i> Mayor colocación: Negocio</div>
               </div>
             </article>
 
+            <!-- 3. Seguimiento de metas -->
             <article class="slide slide--3" aria-roledescription="diapositiva">
               <div class="slide__content">
-                <span class="slide__tag"><i class="ri-briefcase-4-line"></i> Productos</span>
-                <h1 class="slide__title">Productos <span>Caja Arequipa</span></h1>
-                <p class="slide__text">Negocio, consumo y vivienda: revisa los créditos que ofrecemos y a quién van dirigidos.</p>
+                <span class="slide__tag"><i class="ri-flag-2-line"></i> Seguimiento de metas</span>
+                <h1 class="slide__title">Avance de colocaciones <span>por región</span></h1>
+                <p class="slide__text">Compara el monto desembolsado contra la meta del mes y detecta a tiempo qué regiones necesitan apoyo.</p>
                 <div class="slide__actions">
-                  <a href="#productos" class="btn btn--light">Ver catálogo</a>
-                  <a href="#simulador" class="btn btn--outline-light"><i class="ri-calculator-line"></i> Simular cuota</a>
+                  <a href="pages/login.html" class="btn btn--light"><i class="ri-login-box-line"></i> Ingresar</a>
                 </div>
               </div>
               <div class="slide__visual" aria-hidden="true">
                 <div class="glass-card">
-                  <div class="glass-card__head"><i class="ri-stack-line"></i> Líneas de producto</div>
-                  <ul class="glass-card__list" style="margin-top:1rem">
-                    <li><i class="ri-store-2-line"></i> Negocios <b>5</b></li>
-                    <li><i class="ri-user-smile-line"></i> Consumo <b>4</b></li>
-                    <li><i class="ri-home-4-line"></i> Vivienda <b>4</b></li>
-                  </ul>
+                  <div class="glass-card__head"><i class="ri-bar-chart-grouped-line"></i> Avance vs meta (referencial)</div>
+                  <div class="bars">
+                    <span style="--h:82%"></span>
+                    <span style="--h:64%"></span>
+                    <span style="--h:91%"></span>
+                    <span style="--h:47%"></span>
+                    <span style="--h:73%"></span>
+                  </div>
+                  <div class="glass-card__meta"><span>Sur</span><span>Centro</span><span>Norte</span><span>Oriente</span><span>Lima</span></div>
                 </div>
-                <div class="glass-chip glass-chip--top"><i class="ri-check-double-line"></i> Catálogo vigente</div>
+                <div class="glass-chip glass-chip--top"><i class="ri-checkbox-circle-line"></i> Meta global 71%</div>
               </div>
             </article>
 
@@ -180,239 +153,6 @@
         </div>
       </div>
     </section>
-
-    <!-- ============ ACCESOS RÁPIDOS ============ -->
-    <section class="quick" aria-label="Accesos rápidos">
-      <div class="container">
-        <div class="quick__grid">
-          <a href="pages/login.html" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-dashboard-line"></i></span>Mi dashboard</a>
-          <a href="#productos" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-file-list-3-line"></i></span>Productos</a>
-          <a href="#simulador" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-calculator-line"></i></span>Simulador</a>
-          <a href="#accesos" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-shield-user-line"></i></span>Roles y accesos</a>
-          <a href="#comunicados" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-megaphone-line"></i></span>Comunicados</a>
-          <a href="https://wa.me/51921159363?text=Hola%2C%20necesito%20soporte" target="_blank" rel="noopener noreferrer" class="quick__item" data-reveal><span class="quick__icon"><i class="ri-whatsapp-line"></i></span>Soporte</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PRODUCTOS (TABS) ============ -->
-    <section class="section" id="productos">
-      <div class="container">
-        <header class="section__head" data-reveal>
-          <span class="eyebrow">Productos Caja Arequipa</span>
-          <h2 class="section__title">Créditos que colocamos</h2>
-          <p class="section__text">Resumen de cada producto y su público objetivo. Confirma siempre condiciones y tasas en el tarifario vigente.</p>
-        </header>
-
-        <div class="tabs" data-tabs>
-          <div class="tabs__list" role="tablist" data-reveal>
-            <button class="tabs__btn is-active" role="tab" data-tab="negocios" aria-selected="true"><i class="ri-store-2-line"></i> Negocios</button>
-            <button class="tabs__btn" role="tab" data-tab="consumo" aria-selected="false"><i class="ri-user-smile-line"></i> Consumo</button>
-            <button class="tabs__btn" role="tab" data-tab="vivienda" aria-selected="false"><i class="ri-home-4-line"></i> Vivienda</button>
-          </div>
-          <!-- Las tarjetas se generan desde assets/js/data/products.js -->
-          <div class="tabs__panel" role="tabpanel" data-tab-panel></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ ROLES Y ACCESOS ============ -->
-    <section class="section section--soft" id="accesos">
-      <div class="container">
-        <header class="section__head" data-reveal>
-          <span class="eyebrow">Dashboard</span>
-          <h2 class="section__title">¿Qué ve cada usuario?</h2>
-          <p class="section__text">El acceso al dashboard es con usuario y contraseña. Lo que ves depende de tu rol.</p>
-        </header>
-
-        <div class="roles">
-          <article class="role-card" data-reveal>
-            <div class="role-card__icon"><i class="ri-user-line"></i></div>
-            <h3>Supervisor</h3>
-            <p>Seguimiento de su propia cartera.</p>
-            <ul>
-              <li><i class="ri-checkbox-circle-fill"></i> Solo los créditos que desembolsó</li>
-              <li><i class="ri-checkbox-circle-fill"></i> Avance frente a su meta</li>
-              <li><i class="ri-checkbox-circle-fill"></i> Gráficos de su gestión</li>
-            </ul>
-          </article>
-          <article class="role-card role-card--featured" data-reveal>
-            <div class="role-card__icon"><i class="ri-user-star-line"></i></div>
-            <h3>Jefe</h3>
-            <p>Visión completa del equipo.</p>
-            <ul>
-              <li><i class="ri-checkbox-circle-fill"></i> Todos los créditos desembolsados</li>
-              <li><i class="ri-checkbox-circle-fill"></i> Avance y ranking por supervisor</li>
-              <li><i class="ri-checkbox-circle-fill"></i> Gráficos consolidados</li>
-            </ul>
-          </article>
-          <article class="role-card" data-reveal>
-            <div class="role-card__icon"><i class="ri-settings-3-line"></i></div>
-            <h3>Administrador</h3>
-            <p>Gestión del sistema.</p>
-            <ul>
-              <li><i class="ri-checkbox-circle-fill"></i> Crear usuarios y asignar roles</li>
-              <li><i class="ri-checkbox-circle-fill"></i> Cargar la data desde Excel</li>
-              <li><i class="ri-checkbox-circle-fill"></i> Acceso a toda la información</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ SIMULADOR ============ -->
-    <section class="section section--dark" id="simulador">
-      <div class="container simulator">
-        <div class="simulator__info" data-reveal>
-          <span class="eyebrow eyebrow--light">Herramienta</span>
-          <h2 class="section__title">Simula la cuota para tu cliente</h2>
-          <p class="section__text">Obtén una cuota referencial al instante para orientar al cliente antes de la evaluación.</p>
-          <ul class="checklist">
-            <li><i class="ri-check-line"></i> Cuota fija mensual</li>
-            <li><i class="ri-check-line"></i> Ajusta la TEA según el producto</li>
-            <li><i class="ri-check-line"></i> Total a pagar estimado</li>
-          </ul>
-        </div>
-
-        <form class="simulator__card" data-simulator data-tea="0.28" data-reveal>
-          <div class="field">
-            <div class="field__row">
-              <label for="simAmount">Monto del crédito</label>
-              <output data-sim-amount-output>S/ 10,000</output>
-            </div>
-            <input type="range" id="simAmount" min="1000" max="100000" step="500" value="10000" data-sim-amount />
-            <div class="field__hint"><span>S/ 1,000</span><span>S/ 100,000</span></div>
-          </div>
-
-          <div class="field">
-            <label for="simTerm">Plazo</label>
-            <div class="select">
-              <select id="simTerm" data-sim-term>
-                <option value="6">6 meses</option>
-                <option value="12" selected>12 meses</option>
-                <option value="18">18 meses</option>
-                <option value="24">24 meses</option>
-                <option value="36">36 meses</option>
-                <option value="48">48 meses</option>
-              </select>
-              <i class="ri-arrow-down-s-line"></i>
-            </div>
-          </div>
-
-          <div class="simulator__result">
-            <span>Cuota mensual referencial</span>
-            <strong data-sim-quota>S/ 0.00</strong>
-            <div class="simulator__details">
-              <div><small>TEA</small><b data-sim-tea>28.00%</b></div>
-              <div><small>Total a pagar</small><b data-sim-total>S/ 0.00</b></div>
-            </div>
-          </div>
-
-          <p class="simulator__note">*Cálculo referencial. La tasa y condiciones finales las define la evaluación de Caja Arequipa.</p>
-        </form>
-      </div>
-    </section>
-
-    <!-- ============ COMUNICADOS ============ -->
-    <section class="section" id="comunicados">
-      <div class="container">
-        <header class="section__head section__head--row" data-reveal>
-          <div>
-            <span class="eyebrow">Comunicados internos</span>
-            <h2 class="section__title">Novedades del equipo</h2>
-          </div>
-        </header>
-
-        <div class="news__grid">
-          <article class="news-card" data-reveal>
-            <div class="news-card__media news-card__media--1"><i class="ri-flag-2-line"></i></div>
-            <div class="news-card__body">
-              <span class="news-card__tag">Metas</span>
-              <h3>Metas del mes publicadas</h3>
-              <p>Revisa en tu dashboard la meta asignada y tu avance de desembolsos.</p>
-              <a href="pages/login.html" class="link-arrow">Ir al dashboard <i class="ri-arrow-right-line"></i></a>
-            </div>
-          </article>
-          <article class="news-card" data-reveal>
-            <div class="news-card__media news-card__media--2"><i class="ri-file-shield-2-line"></i></div>
-            <div class="news-card__body">
-              <span class="news-card__tag">Políticas</span>
-              <h3>Recuerda validar requisitos</h3>
-              <p>Antes de enviar un expediente, confirma documentos y condiciones del producto.</p>
-              <a href="#productos" class="link-arrow">Ver productos <i class="ri-arrow-right-line"></i></a>
-            </div>
-          </article>
-          <article class="news-card" data-reveal>
-            <div class="news-card__media news-card__media--3"><i class="ri-graduation-cap-line"></i></div>
-            <div class="news-card__body">
-              <span class="news-card__tag">Capacitación</span>
-              <h3>Próxima capacitación de productos</h3>
-              <p>Te avisaremos fecha y hora por este medio y por WhatsApp.</p>
-              <a href="https://wa.me/51921159363" target="_blank" rel="noopener noreferrer" class="link-arrow">Consultar <i class="ri-arrow-right-line"></i></a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CTA ============ -->
-    <section class="section section--soft">
-      <div class="container">
-        <div class="cta" data-reveal>
-          <div>
-            <h2>Revisa tu avance</h2>
-            <p>Ingresa con tu usuario y contraseña para ver tus créditos y gráficos.</p>
-          </div>
-          <div class="cta__actions">
-            <a href="pages/login.html" class="btn btn--light"><i class="ri-login-box-line"></i> Ingresar al Dashboard</a>
-            <a href="https://wa.me/51921159363?text=Hola%2C%20necesito%20soporte" target="_blank" rel="noopener noreferrer" class="btn btn--outline-light"><i class="ri-whatsapp-line"></i> Soporte</a>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
-
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer">
-    <div class="container footer__grid">
-      <div class="footer__brand">
-        <a href="index.html" class="logo logo--light" aria-label="SEJ Partners inicio">
-          <img src="assets/img/logo-sej-white.png" alt="SEJ Partners S.A.C." class="logo__img" />
-        </a>
-        <p>Portal interno para supervisores y jefatura de SEJ Partners S.A.C.</p>
-      </div>
-      <div class="footer__col">
-        <h4>Portal</h4>
-        <ul>
-          <li><a href="pages/login.html">Dashboard</a></li>
-          <li><a href="#productos">Productos</a></li>
-          <li><a href="#simulador">Simulador</a></li>
-          <li><a href="#comunicados">Comunicados</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4>Productos</h4>
-        <ul>
-          <li><a href="#productos">Negocios</a></li>
-          <li><a href="#productos">Consumo</a></li>
-          <li><a href="#productos">Vivienda</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4>Soporte</h4>
-        <ul>
-          <li><a href="https://wa.me/51921159363" target="_blank" rel="noopener noreferrer"><i class="ri-whatsapp-line"></i> WhatsApp</a></li>
-          <li><i class="ri-time-line"></i> Lun - Sáb: 9:00 - 18:00</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="container footer__bottom-inner">
-        <span>© <span data-year></span> SEJ Partners S.A.C. Uso interno.</span>
-      </div>
-    </div>
-  </footer>
-
-  <button class="back-to-top" data-back-to-top aria-label="Volver arriba"><i class="ri-arrow-up-line"></i></button>
 </body>
 </html>

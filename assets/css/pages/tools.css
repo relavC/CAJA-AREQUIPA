@@ -1,0 +1,57 @@
+/* =========================================================
+   HERRAMIENTAS — formulario
+   ========================================================= */
+.tools-page { background: var(--color-bg-soft); min-height: 100vh; }
+.tools { padding: clamp(1.5rem, 4vw, 3rem) 0 4rem; }
+.tools__inner { max-width: 880px; display: grid; gap: 1.5rem; }
+
+.tools__head h1 { font-size: var(--fs-h2); margin: 0.75rem 0 0.5rem; }
+.tools__head p { color: var(--color-text-muted); max-width: 640px; }
+.tools__tag {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.35rem 0.85rem; border-radius: var(--radius-full);
+  background: var(--color-primary-soft); color: var(--color-primary);
+  font-size: var(--fs-sm); font-weight: 700;
+}
+
+.tool-form,
+.tool-result {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+.tool-form { display: grid; gap: 1.5rem; }
+.tool-form fieldset { border: none; padding: 0; margin: 0; display: grid; gap: 1rem; min-width: 0; }
+.tool-form legend {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-weight: 800; font-size: 1.05rem; margin-bottom: 1rem;
+}
+.tool-form legend i { color: var(--color-primary); }
+.tool-form__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+
+.control textarea {
+  width: 100%; resize: vertical; font: inherit;
+  padding: 0.6rem 0.8rem; border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border); background: var(--color-white);
+}
+.control textarea:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.12); }
+.control .is-invalid { border-color: #b42318; box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.12); }
+
+.tool-form__actions { display: flex; justify-content: flex-end; gap: 0.75rem; flex-wrap: wrap; }
+
+.tool-result__head { display: flex; gap: 0.9rem; align-items: flex-start; margin-bottom: 1.25rem; }
+.tool-result__head i { font-size: 2rem; color: #137333; }
+.tool-result__head h2 { font-size: 1.2rem; }
+.tool-result__head p { color: var(--color-text-muted); font-size: var(--fs-sm); }
+.tool-result__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+.tool-result__list div { padding: 0.8rem 1rem; border-radius: var(--radius-md); background: var(--color-bg-soft); min-width: 0; }
+.tool-result__list dt { font-size: var(--fs-xs); color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.tool-result__list dd { margin: 0.2rem 0 0; font-weight: 700; overflow-wrap: anywhere; }
+
+@media (max-width: 640px) {
+  .tool-form__grid, .tool-result__list { grid-template-columns: 1fr; }
+  .tool-form__actions .btn { flex: 1; }
+}
+.alert[hidden] { display: none; }

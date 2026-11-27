@@ -1,5 +1,13 @@
 # SEJ Partners — Portal interno + Dashboard de créditos
 
+> **Estado actual (modo demo, sin base de datos)**
+> - Página principal: solo el slider (análisis de datos y créditos Caja Arequipa, gráficos referenciales).
+> - Menú: Inicio · Herramientas · Dashboard.
+> - Herramientas (`pages/herramientas.html`): formulario de solicitud de crédito (valida y muestra un resumen; no guarda).
+> - Dashboard: acceso con **admin / admin** (`assets/js/services/auth-local.js`), muestra datos referenciales.
+> - La versión con Supabase quedó en `assets/js/dashboard/app.supabase.js` y `services/auth.js` para retomarla luego.
+
+
 Portal interno (landing) para supervisores y jefatura, con login y dashboard conectado a **Supabase**.
 
 ## Primeros pasos

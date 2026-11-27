@@ -291,3 +291,37 @@
   .slider__btn { width: 40px; height: 40px; }
   .slider__controls { left: 1.25rem; right: 1.25rem; }
 }
+
+/* ---------- Gráficos referenciales del slider ---------- */
+.spark { width: 100%; height: 130px; margin-top: 1rem; overflow: visible; }
+.spark__grid line { stroke: rgba(255, 255, 255, 0.15); stroke-width: 1; stroke-dasharray: 4 4; }
+.spark__line { fill: none; stroke: var(--color-accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.spark__dot { fill: var(--color-white); stroke: var(--color-accent); stroke-width: 3; }
+
+.donut-wrap { display: flex; align-items: center; gap: 1.25rem; margin-top: 1.25rem; }
+.donut {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: conic-gradient(#7fb3ec 0 55%, #ffffff 55% 85%, #2f7bd8 85% 100%);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.donut::before {
+  content: '';
+  position: absolute;
+  inset: 22px;
+  border-radius: 50%;
+  background: #12305a;
+}
+.donut span { position: relative; font-weight: 800; font-size: var(--fs-sm); }
+
+.legend { display: grid; gap: 0.6rem; flex: 1; font-size: var(--fs-sm); }
+.legend li { display: flex; align-items: center; gap: 0.5rem; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; background: var(--c); flex-shrink: 0; }
+.legend b { margin-left: auto; }
+
+/* Home: solo el slider ocupa la página */
+.home .hero { padding-bottom: 2rem; }
