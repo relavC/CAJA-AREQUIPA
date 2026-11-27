@@ -40,73 +40,74 @@
     <div class="container tools__inner">
       <header class="tools__head">
         <span class="tools__tag"><i class="ri-file-edit-line"></i> Herramientas</span>
-        <h1>Formulario de solicitud de crédito</h1>
-        <p>Registra los datos del cliente y del crédito solicitado. Por ahora la información no se guarda en una base de datos: al enviar verás un resumen de la solicitud.</p>
+        <h1>Registro de prospecciones</h1>
+        <p>Formulario para supervisores de venta. La fecha y hora se guardan automáticamente al registrar.</p>
       </header>
 
       <form class="tool-form" data-tool-form novalidate>
         <fieldset>
-          <legend><i class="ri-user-line"></i> Datos del cliente</legend>
+          <legend><i class="ri-user-star-line"></i> Supervisor y asesor</legend>
           <div class="tool-form__grid">
             <label class="control">
-              <span>Nombres y apellidos *</span>
-              <input type="text" name="nombre" required placeholder="Ej. Juan Pérez Quispe" />
+              <span>Supervisor de venta (SDV) *</span>
+              <select name="supervisor" required data-select-supervisores>
+                <option value="">Selecciona tu nombre</option>
+              </select>
             </label>
             <label class="control">
-              <span>DNI *</span>
-              <input type="text" name="dni" required inputmode="numeric" pattern="\d{8}" maxlength="8" placeholder="8 dígitos" />
-            </label>
-            <label class="control">
-              <span>Celular *</span>
-              <input type="tel" name="celular" required inputmode="numeric" pattern="9\d{8}" maxlength="9" placeholder="9XXXXXXXX" />
-            </label>
-            <label class="control">
-              <span>Correo</span>
-              <input type="email" name="correo" placeholder="cliente@correo.com" />
+              <span>DNI_Asesor *</span>
+              <input type="text" name="dni_asesor" required inputmode="numeric" pattern="\d{8}" maxlength="8" autocomplete="off" placeholder="Solo números (8 dígitos)" data-solo-numeros />
             </label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend><i class="ri-bank-line"></i> Datos del crédito</legend>
+          <legend><i class="ri-map-pin-2-line"></i> Agencia y analista</legend>
           <div class="tool-form__grid">
             <label class="control">
-              <span>Tipo de crédito *</span>
-              <select name="tipo" required>
-                <option value="">Selecciona</option>
-                <option>Crédito de negocio</option>
-                <option>Crédito de consumo</option>
-                <option>Crédito de vivienda</option>
+              <span>Agencia *</span>
+              <select name="agencia" required data-select-agencias>
+                <option value="">Selecciona la agencia</option>
               </select>
             </label>
             <label class="control">
-              <span>Monto solicitado (S/) *</span>
-              <input type="number" name="monto" required min="300" step="50" placeholder="Ej. 5000" />
-            </label>
-            <label class="control">
-              <span>Plazo (meses) *</span>
-              <input type="number" name="plazo" required min="1" max="240" placeholder="Ej. 12" />
-            </label>
-            <label class="control">
-              <span>Agencia *</span>
-              <input type="text" name="agencia" required placeholder="Ej. Arequipa Centro" />
+              <span>Analista asignado *</span>
+              <input type="text" name="analista" required maxlength="120" placeholder="Nombre del analista" />
             </label>
           </div>
           <label class="control tool-form__full">
-            <span>Observaciones</span>
-            <textarea name="observaciones" rows="3" placeholder="Destino del crédito, comentarios del asesor..."></textarea>
+            <span>Comentario *</span>
+            <textarea name="comentario" rows="3" required maxlength="1000" placeholder="Comentario sobre la prospección..."></textarea>
           </label>
         </fieldset>
+
+        <p class="tool-form__stamp"><i class="ri-time-line"></i> Fecha y hora de registro: <b data-reloj></b></p>
 
         <p class="alert alert--bad" data-form-error role="alert" hidden></p>
 
         <div class="tool-form__actions">
           <button type="reset" class="btn btn--ghost"><i class="ri-eraser-line"></i> Limpiar</button>
-          <button type="submit" class="btn btn--primary"><i class="ri-send-plane-line"></i> Enviar solicitud</button>
+          <button type="submit" class="btn btn--primary"><i class="ri-save-3-line"></i> Registrar</button>
         </div>
       </form>
 
-      <section class="tool-result" data-tool-result hidden aria-live="polite"></section>
+      <p class="alert alert--ok" data-form-ok role="status" hidden></p>
+
+      <section class="tool-records">
+        <div class="tool-records__head">
+          <div>
+            <h2><i class="ri-list-check-3"></i> <span>Registros (<span data-total>0</span>)</span></h2>
+            <p>Por ahora se guardan solo en este navegador, hasta conectar la base de datos.</p>
+          </div>
+          <button type="button" class="btn btn--ghost btn--sm" data-descargar><i class="ri-download-2-line"></i> Descargar CSV</button>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Fecha y hora</th><th>Supervisor</th><th>DNI_Asesor</th><th>Agencia</th><th>Analista</th><th>Comentario</th></tr></thead>
+            <tbody data-registros></tbody>
+          </table>
+        </div>
+      </section>
     </div>
   </main>
 </body>

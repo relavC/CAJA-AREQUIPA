@@ -55,3 +55,28 @@
   .tool-form__actions .btn { flex: 1; }
 }
 .alert[hidden] { display: none; }
+
+/* ---------- Prospecciones ---------- */
+.tool-form__stamp {
+  display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;
+  padding: 0.75rem 1rem; border-radius: var(--radius-md);
+  background: var(--color-primary-soft); color: var(--color-primary-dark); font-size: var(--fs-sm);
+}
+.tool-form__stamp b { font-variant-numeric: tabular-nums; }
+
+.tool-records {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.tool-records__head {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;
+  padding: 1.25rem clamp(1.25rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--color-border);
+}
+.tool-records__head h2 { font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+.tool-records__head h2 i { color: var(--color-primary); }
+.tool-records__head p { color: var(--color-text-muted); font-size: var(--fs-sm); }
+.tool-records .table td:last-child { min-width: 220px; }
