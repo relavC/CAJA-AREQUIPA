@@ -37,7 +37,7 @@ const limpiar = (datos) => Object.fromEntries(CAMPOS.map((c) => [c, String(datos
 
 /** Todos los registros, del más reciente al más antiguo */
 export const listar = () =>
-  leer().sort((a, b) => String(b.registrado_en).localeCompare(String(a.registrado_en)));
+  leer().sort((a, b) => String(b.registrado_en || '').localeCompare(String(a.registrado_en || '')));
 
 export const obtener = (id) => leer().find((r) => r.id === id) || null;
 

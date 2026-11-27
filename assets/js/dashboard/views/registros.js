@@ -10,6 +10,28 @@ import * as store from '../../services/prospecciones.js';
 
 const POR_PAGINA = 15;
 
+/* ---------- Status: tiempo desde el registro ----------
+   Verde: 0 a menos de 12 h · Amarillo: 12 a menos de 24 h · Rojo: 24 h o más */
+const LIMITE_VERDE = 12;
+const LIMITE_AMARILLO = 24;
+
+/** Fecha de registro en ISO (usa registrado_en; si falta, lee 'DD/MM/AAAA HH:MM:SS') */
+function isoRegistro(r) {
+  if (r.registrado_en) return r.registrado_en;
+  const m = String(r.fecha_hora || '').match(/(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):?(\d{2})?/);
+  return m ? new Date(+m[3], +m[2] - 1, +m[1], +m[4], +m[5], +(m[6] || 0)).toISOString() : '';
+}
+
+function status(iso) {
+  const ms = iso ? Date.now() - new Date(iso).getTime() : NaN;
+  if (Number.isNaN(ms)) return '<span class="status status--na">—</span>';
+  const horas = Math.max(0, ms) / 36e5;
+  const clase = horas < LIMITE_VERDE ? 'ok' : horas < LIMITE_AMARILLO ? 'warn' : 'bad';
+  const texto = horas < 1 ? '< 1 h' : `${Math.floor(horas)} h`;
+  const icono = clase === 'ok' ? 'ri-checkbox-circle-fill' : clase === 'warn' ? 'ri-error-warning-fill' : 'ri-alarm-warning-fill';
+  return `<span class="status status--${clase}" title="Han pasado ${horas.toFixed(1)} horas desde el registro"><i class="${icono}"></i>${texto}</span>`;
+}
+
 const opciones = (lista, sel = '') =>
   lista.map((v) => `<option value="${esc(v)}"${v === sel ? ' selected' : ''}>${esc(v)}</option>`).join('');
 
@@ -36,6 +58,12 @@ export function render(el) {
             <select data-f="supervisor"><option value="">Todos</option>${opciones(SUPERVISORES)}</select></label>
           <label class="control"><span>Agencia</span>
             <select data-f="agencia"><option value="">Todas</option>${opciones(AGENCIAS)}</select></label>
+        </div>
+        <div class="status-legend">
+          <span>Status (tiempo desde el registro):</span>
+          <span class="status status--ok"><i class="ri-checkbox-circle-fill"></i>0 a 12 h</span>
+          <span class="status status--warn"><i class="ri-error-warning-fill"></i>12 a 24 h</span>
+          <span class="status status--bad"><i class="ri-alarm-warning-fill"></i>Más de 24 h</span>
         </div>
       </div>
       <div class="panel__body panel__body--flush" data-tabla></div>
@@ -120,12 +148,13 @@ export function render(el) {
       <div class="table-wrap">
         <table class="table table--registros">
           <thead><tr>
-            <th>Fecha y hora</th><th>Supervisor</th><th>DNI_Asesor</th><th>Agencia</th>
+            <th>Status</th><th>Fecha y hora</th><th>Supervisor</th><th>DNI_Asesor</th><th>Agencia</th>
             <th>Analista</th><th>Comentario</th><th class="actions-col">Acciones</th>
           </tr></thead>
           <tbody>
             ${pagina.map((r) => `
               <tr>
+                <td class="nowrap" data-status="${esc(isoRegistro(r))}">${status(isoRegistro(r))}</td>
                 <td class="nowrap">${esc(r.fecha_hora)}${r.editado_en ? `<small class="muted-line" title="Editado el ${esc(r.editado_en)}"><i class="ri-edit-line"></i> editado</small>` : ''}</td>
                 <td>${esc(r.supervisor)}</td>
                 <td class="nowrap">${esc(r.dni_asesor)}</td>
@@ -254,4 +283,10 @@ export function render(el) {
   });
 
   pintar();
+
+  // Actualiza el status cada minuto mientras esta vista esté abierta
+  const reloj = setInterval(() => {
+    if (!document.contains(tabla)) return clearInterval(reloj);
+    $$('[data-status]', tabla).forEach((td) => { td.innerHTML = status(td.dataset.status); });
+  }, 60_000);
 }

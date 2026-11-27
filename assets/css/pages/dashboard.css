@@ -425,3 +425,19 @@
 .btn--xs { padding: 0.4rem 0.75rem; font-size: 0.8rem; gap: 0.3rem; }
 .btn--xs:hover { transform: none; }
 .tag[hidden] { display: none; }
+
+/* ---------- Status de registros (tiempo transcurrido) ---------- */
+.status {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.25rem 0.65rem 0.25rem 0.5rem; border-radius: var(--radius-full);
+  font-size: var(--fs-xs); font-weight: 700; white-space: nowrap;
+}
+.status i { font-size: 1rem; }
+.status--ok   { background: #e6f4ea; color: #137333; }
+.status--warn { background: #fef7d6; color: #8a6100; }
+.status--warn i { color: #e0a800; }
+.status--bad  { background: #fdecec; color: #b42318; }
+.status--na   { background: var(--color-bg-soft); color: var(--color-text-muted); }
+.status-legend { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; font-size: var(--fs-sm); color: var(--color-text-muted); }
+.table--registros .actions-col { position: static; box-shadow: none; }
+.table--registros .cell-comment { min-width: 180px; }
