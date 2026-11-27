@@ -62,6 +62,23 @@
         </fieldset>
 
         <fieldset>
+          <legend><i class="ri-user-line"></i> Cliente y monto</legend>
+          <div class="tool-form__grid">
+            <label class="control">
+              <span>DNI del cliente *</span>
+              <input type="text" name="dni_cliente" required inputmode="numeric" pattern="\d{8}" maxlength="8" autocomplete="off" placeholder="Solo números (8 dígitos)" data-solo-numeros />
+            </label>
+            <label class="control">
+              <span>Monto (S/) *</span>
+              <div class="input-prefix">
+                <span>S/</span>
+                <input type="number" name="monto" required min="0.01" step="0.01" inputmode="decimal" placeholder="0.00" />
+              </div>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
           <legend><i class="ri-map-pin-2-line"></i> Agencia y analista</legend>
           <div class="tool-form__grid">
             <label class="control">

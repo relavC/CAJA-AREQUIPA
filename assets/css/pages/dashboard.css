@@ -439,5 +439,5 @@
 .status--bad  { background: #fdecec; color: #b42318; }
 .status--na   { background: var(--color-bg-soft); color: var(--color-text-muted); }
 .status-legend { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; font-size: var(--fs-sm); color: var(--color-text-muted); }
-.table--registros .actions-col { position: static; box-shadow: none; }
 .table--registros .cell-comment { min-width: 180px; }
+.app__content > * { min-width: 0; }

@@ -8,6 +8,9 @@ import { esc, toast, vacio } from '../ui.js';
 import { SUPERVISORES, AGENCIAS } from '../../data/prospecciones.js';
 import * as store from '../../services/prospecciones.js';
 
+const fmtSoles = new Intl.NumberFormat('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const soles = (v) => (v == null || v === '' ? '—' : `S/ ${fmtSoles.format(Number(v))}`);
+
 const POR_PAGINA = 15;
 
 /* ---------- Status: tiempo desde el registro ----------
@@ -53,7 +56,7 @@ export function render(el) {
       <div class="panel__body">
         <div class="toolbar">
           <label class="control grow"><span>Buscar</span>
-            <input type="search" data-f="texto" placeholder="DNI, analista, comentario..." /></label>
+            <input type="search" data-f="texto" placeholder="DNI asesor o cliente, analista, comentario..." /></label>
           <label class="control"><span>Supervisor</span>
             <select data-f="supervisor"><option value="">Todos</option>${opciones(SUPERVISORES)}</select></label>
           <label class="control"><span>Agencia</span>
@@ -81,7 +84,11 @@ export function render(el) {
             <label class="control"><span>Supervisor de venta (SDV) *</span>
               <select name="supervisor" required><option value="">Selecciona</option>${opciones(SUPERVISORES)}</select></label>
             <label class="control"><span>DNI_Asesor *</span>
-              <input name="dni_asesor" required inputmode="numeric" pattern="\\d{8}" maxlength="8" autocomplete="off" placeholder="8 dígitos" /></label>
+              <input name="dni_asesor" required inputmode="numeric" pattern="\\d{8}" maxlength="8" autocomplete="off" placeholder="8 dígitos" data-solo-numeros /></label>
+            <label class="control"><span>DNI del cliente *</span>
+              <input name="dni_cliente" required inputmode="numeric" pattern="\\d{8}" maxlength="8" autocomplete="off" placeholder="8 dígitos" data-solo-numeros /></label>
+            <label class="control"><span>Monto (S/) *</span>
+              <div class="input-prefix"><span>S/</span><input type="number" name="monto" required min="0.01" step="0.01" inputmode="decimal" placeholder="0.00" /></div></label>
             <label class="control"><span>Agencia *</span>
               <select name="agencia" required><option value="">Selecciona</option>${opciones(AGENCIAS)}</select></label>
             <label class="control"><span>Analista asignado *</span>
@@ -126,7 +133,7 @@ export function render(el) {
     return store.listar().filter((r) =>
       (!f.supervisor || r.supervisor === f.supervisor) &&
       (!f.agencia || r.agencia === f.agencia) &&
-      (!t || [r.fecha_hora, r.supervisor, r.dni_asesor, r.agencia, r.analista, r.comentario]
+      (!t || [r.fecha_hora, r.supervisor, r.dni_asesor, r.dni_cliente, r.agencia, r.analista, r.comentario]
         .some((v) => String(v).toLowerCase().includes(t))));
   }
 
@@ -148,7 +155,7 @@ export function render(el) {
       <div class="table-wrap">
         <table class="table table--registros">
           <thead><tr>
-            <th>Status</th><th>Fecha y hora</th><th>Supervisor</th><th>DNI_Asesor</th><th>Agencia</th>
+            <th>Status</th><th>Fecha y hora</th><th>Supervisor</th><th>DNI_Asesor</th><th>DNI cliente</th><th class="num">Monto</th><th>Agencia</th>
             <th>Analista</th><th>Comentario</th><th class="actions-col">Acciones</th>
           </tr></thead>
           <tbody>
@@ -158,6 +165,8 @@ export function render(el) {
                 <td class="nowrap">${esc(r.fecha_hora)}${r.editado_en ? `<small class="muted-line" title="Editado el ${esc(r.editado_en)}"><i class="ri-edit-line"></i> editado</small>` : ''}</td>
                 <td>${esc(r.supervisor)}</td>
                 <td class="nowrap">${esc(r.dni_asesor)}</td>
+                <td class="nowrap">${esc(r.dni_cliente || '—')}</td>
+                <td class="num">${soles(r.monto)}</td>
                 <td>${esc(r.agencia)}</td>
                 <td>${esc(r.analista)}</td>
                 <td class="cell-comment">${esc(r.comentario)}</td>
@@ -208,15 +217,15 @@ export function render(el) {
     $('[data-form-meta]', el).innerHTML = r
       ? `<i class="ri-time-line"></i> Registrado el <b>${esc(r.fecha_hora)}</b>${r.editado_en ? ` · editado el ${esc(r.editado_en)}` : ''}`
       : '<i class="ri-time-line"></i> La fecha y hora se guardarán al momento de guardar.';
-    if (r) ['supervisor', 'dni_asesor', 'agencia', 'analista', 'comentario'].forEach((k) => { form[k].value = r[k] ?? ''; });
+    if (r) ['supervisor', 'dni_asesor', 'dni_cliente', 'monto', 'agencia', 'analista', 'comentario'].forEach((k) => { form[k].value = r[k] ?? ''; });
     dlgForm.showModal();
     form.supervisor.focus();
   }
 
-  form.dni_asesor.addEventListener('input', () => {
-    const v = form.dni_asesor.value.replace(/\D/g, '').slice(0, 8);
-    if (v !== form.dni_asesor.value) form.dni_asesor.value = v;
-  });
+  $$('[data-solo-numeros]', form).forEach((input) => input.addEventListener('input', () => {
+    const v = input.value.replace(/\D/g, '').slice(0, 8);
+    if (v !== input.value) input.value = v;
+  }));
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -226,7 +235,11 @@ export function render(el) {
     if (malo) {
       malo.classList.add('is-invalid');
       malo.focus();
-      formError.textContent = malo.name === 'dni_asesor' ? 'El DNI_Asesor debe tener 8 números.' : 'Completa todos los campos obligatorios.';
+      formError.textContent = {
+        dni_asesor: 'El DNI_Asesor debe tener 8 números.',
+        dni_cliente: 'El DNI del cliente debe tener 8 números.',
+        monto: 'Ingresa un monto válido en soles (mayor a 0).',
+      }[malo.name] || 'Completa todos los campos obligatorios.';
       formError.hidden = false;
       return;
     }
@@ -254,6 +267,8 @@ export function render(el) {
         <li><span>Fecha</span><b>${esc(r.fecha_hora)}</b></li>
         <li><span>Supervisor</span><b>${esc(r.supervisor)}</b></li>
         <li><span>DNI_Asesor</span><b>${esc(r.dni_asesor)}</b></li>
+        <li><span>DNI cliente</span><b>${esc(r.dni_cliente || '—')}</b></li>
+        <li><span>Monto</span><b>${soles(r.monto)}</b></li>
         <li><span>Agencia</span><b>${esc(r.agencia)}</b></li>
       </ul>`;
     dlgBorrar.showModal();

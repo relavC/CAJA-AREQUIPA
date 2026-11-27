@@ -32,8 +32,18 @@ function escribir(lista) {
   }
 }
 
-const CAMPOS = ['supervisor', 'dni_asesor', 'agencia', 'analista', 'comentario'];
-const limpiar = (datos) => Object.fromEntries(CAMPOS.map((c) => [c, String(datos[c] ?? '').trim()]));
+const CAMPOS = ['supervisor', 'dni_asesor', 'dni_cliente', 'agencia', 'analista', 'comentario'];
+
+/** Monto en soles con 2 decimales (null si no es válido) */
+const aMonto = (v) => {
+  const n = Number(String(v ?? '').replace(',', '.'));
+  return Number.isFinite(n) && n > 0 ? Math.round(n * 100) / 100 : null;
+};
+
+const limpiar = (datos) => ({
+  ...Object.fromEntries(CAMPOS.map((c) => [c, String(datos[c] ?? '').trim()])),
+  monto: aMonto(datos.monto),
+});
 
 /** Todos los registros, del más reciente al más antiguo */
 export const listar = () =>
@@ -67,10 +77,12 @@ export function eliminar(id) {
 
 /** Descarga los registros en CSV (separado por ; para Excel en español) */
 export function descargarCSV(lista = listar()) {
-  const cab = ['Fecha y hora', 'Supervisor', 'DNI_Asesor', 'Agencia', 'Analista', 'Comentario', 'Editado'];
+  const cab = ['Fecha y hora', 'Supervisor', 'DNI_Asesor', 'DNI_Cliente', 'Monto (S/)', 'Agencia', 'Analista', 'Comentario', 'Editado'];
+  const texto = (v) => (v ? `="${v}"` : '""');           // conserva ceros a la izquierda en Excel
+  const monto = (v) => (v == null ? '' : Number(v).toFixed(2).replace('.', ','));
   const campo = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
   const filas = lista.map((r) => [
-    campo(r.fecha_hora), campo(r.supervisor), `="${r.dni_asesor}"`, campo(r.agencia),
+    campo(r.fecha_hora), campo(r.supervisor), texto(r.dni_asesor), texto(r.dni_cliente), monto(r.monto), campo(r.agencia),
     campo(r.analista), campo(r.comentario), campo(r.editado_en || ''),
   ].join(';'));
   const csv = '﻿' + [cab.map(campo).join(';'), ...filas].join('\r\n');

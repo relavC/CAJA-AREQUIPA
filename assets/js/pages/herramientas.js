@@ -14,7 +14,6 @@ const form = $('[data-tool-form]');
 const errorBox = $('[data-form-error]');
 const okBox = $('[data-form-ok]');
 const reloj = $('[data-reloj]');
-const dniInput = $('[data-solo-numeros]');
 
 const esc = (v) =>
   String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -25,9 +24,11 @@ $('[data-select-supervisores]').insertAdjacentHTML('beforeend', opciones(SUPERVI
 $('[data-select-agencias]').insertAdjacentHTML('beforeend', opciones(AGENCIAS));
 
 /* ---------- DNI: solo números ---------- */
-dniInput.addEventListener('input', () => {
-  const limpio = dniInput.value.replace(/\D/g, '').slice(0, 8);
-  if (limpio !== dniInput.value) dniInput.value = limpio;
+form.querySelectorAll('[data-solo-numeros]').forEach((input) => {
+  input.addEventListener('input', () => {
+    const limpio = input.value.replace(/\D/g, '').slice(0, 8);
+    if (limpio !== input.value) input.value = limpio;
+  });
 });
 
 /* ---------- Reloj ---------- */
@@ -39,6 +40,8 @@ setInterval(tic, 1000);
 const MENSAJES = {
   supervisor: 'Selecciona el supervisor de venta.',
   dni_asesor: 'El DNI_Asesor debe tener 8 números.',
+  dni_cliente: 'El DNI del cliente debe tener 8 números.',
+  monto: 'Ingresa un monto válido en soles (mayor a 0).',
   agencia: 'Selecciona la agencia.',
   analista: 'Ingresa el analista asignado.',
   comentario: 'Ingresa un comentario.',
