@@ -441,3 +441,10 @@
 .status-legend { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; font-size: var(--fs-sm); color: var(--color-text-muted); }
 .table--registros .cell-comment { min-width: 180px; }
 .app__content > * { min-width: 0; }
+
+/* Tipo de documento del cliente en la tabla */
+.doc-tipo {
+  display: inline-block; margin-right: 0.4rem; padding: 0.1rem 0.4rem; border-radius: 4px;
+  background: var(--color-primary-soft); color: var(--color-primary);
+  font-size: 0.68rem; font-weight: 800; letter-spacing: 0.03em; vertical-align: 1px;
+}

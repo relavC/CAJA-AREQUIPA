@@ -17,9 +17,16 @@ const nuevoId = () =>
 function leer() {
   let lista;
   try { lista = JSON.parse(localStorage.getItem(CLAVE)) || []; } catch { lista = []; }
-  // Registros antiguos sin id: se les asigna uno
+  // Registros antiguos: se les asigna id y se pasa dni_cliente a documento
   let cambio = false;
-  lista.forEach((r) => { if (!r.id) { r.id = nuevoId(); cambio = true; } });
+  lista.forEach((r) => {
+    if (!r.id) { r.id = nuevoId(); cambio = true; }
+    if ('dni_cliente' in r) {
+      if (!r.doc_cliente && r.dni_cliente) { r.tipo_doc_cliente = 'DNI'; r.doc_cliente = r.dni_cliente; }
+      delete r.dni_cliente;
+      cambio = true;
+    }
+  });
   if (cambio) escribir(lista);
   return lista;
 }
@@ -32,7 +39,7 @@ function escribir(lista) {
   }
 }
 
-const CAMPOS = ['supervisor', 'dni_asesor', 'dni_cliente', 'agencia', 'analista', 'comentario'];
+const CAMPOS = ['supervisor', 'dni_asesor', 'tipo_doc_cliente', 'doc_cliente', 'agencia', 'analista', 'comentario'];
 
 /** Monto en soles con 2 decimales (null si no es válido) */
 const aMonto = (v) => {
@@ -77,12 +84,12 @@ export function eliminar(id) {
 
 /** Descarga los registros en CSV (separado por ; para Excel en español) */
 export function descargarCSV(lista = listar()) {
-  const cab = ['Fecha y hora', 'Supervisor', 'DNI_Asesor', 'DNI_Cliente', 'Monto (S/)', 'Agencia', 'Analista', 'Comentario', 'Editado'];
+  const cab = ['Fecha y hora', 'Supervisor', 'DNI_Asesor', 'Tipo_Doc_Cliente', 'Doc_Cliente', 'Monto (S/)', 'Agencia', 'Analista', 'Comentario', 'Editado'];
   const texto = (v) => (v ? `="${v}"` : '""');           // conserva ceros a la izquierda en Excel
   const monto = (v) => (v == null ? '' : Number(v).toFixed(2).replace('.', ','));
   const campo = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
   const filas = lista.map((r) => [
-    campo(r.fecha_hora), campo(r.supervisor), texto(r.dni_asesor), texto(r.dni_cliente), monto(r.monto), campo(r.agencia),
+    campo(r.fecha_hora), campo(r.supervisor), texto(r.dni_asesor), campo(r.tipo_doc_cliente || ''), texto(r.doc_cliente), monto(r.monto), campo(r.agencia),
     campo(r.analista), campo(r.comentario), campo(r.editado_en || ''),
   ].join(';'));
   const csv = '﻿' + [cab.map(campo).join(';'), ...filas].join('\r\n');

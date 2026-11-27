@@ -65,8 +65,12 @@
           <legend><i class="ri-user-line"></i> Cliente y monto</legend>
           <div class="tool-form__grid">
             <label class="control">
-              <span>DNI del cliente *</span>
-              <input type="text" name="dni_cliente" required inputmode="numeric" pattern="\d{8}" maxlength="8" autocomplete="off" placeholder="Solo números (8 dígitos)" data-solo-numeros />
+              <span>Tipo de documento del cliente *</span>
+              <select name="tipo_doc_cliente" required data-tipo-doc></select>
+            </label>
+            <label class="control">
+              <span>N° de documento del cliente *</span>
+              <input type="text" name="doc_cliente" required autocomplete="off" data-doc />
             </label>
             <label class="control">
               <span>Monto (S/) *</span>
