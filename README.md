@@ -3,7 +3,8 @@
 > **Estado actual (modo demo, sin base de datos)**
 > - Página principal: solo el slider (análisis de datos y créditos Caja Arequipa, gráficos referenciales).
 > - Menú: Inicio · Herramientas · Dashboard.
-> - Herramientas (`pages/herramientas.html`): registro de prospecciones para supervisores de venta (SDV, DNI_Asesor, agencia, analista, comentario; fecha y hora automática). Se guarda en el navegador y se descarga en CSV. Listas en `assets/js/data/prospecciones.js`.
+> - Herramientas (`pages/herramientas.html`): registro de prospecciones para supervisores de venta (SDV, DNI_Asesor, agencia, analista, comentario; fecha y hora automática). Listas en `assets/js/data/prospecciones.js`.
+> - Dashboard → **Registros**: tabla de prospecciones con búsqueda, filtros, nuevo, editar, eliminar y descarga CSV. Almacenamiento en `assets/js/services/prospecciones.js` (hoy localStorage; ahí se conectará la base de datos).
 > - Dashboard: acceso con **admin / admin** (`assets/js/services/auth-local.js`), muestra datos referenciales.
 > - La versión con Supabase quedó en `assets/js/dashboard/app.supabase.js` y `services/auth.js` para retomarla luego.
 

@@ -7,6 +7,7 @@
 import { $, $$ } from '../utils/helpers.js';
 import { requerirSesion, cerrarSesion } from '../services/auth-local.js';
 import { esc, soles, num, pct, kpi, barra, tagEstado } from './ui.js';
+import * as vRegistros from './views/registros.js';
 
 /* ---------- Datos referenciales ---------- */
 const REGIONES = [
@@ -105,7 +106,8 @@ function vistaResumen(el) {
 }
 
 const RUTAS = {
-  resumen: { titulo: 'Resumen', icono: 'ri-dashboard-3-line', render: vistaResumen },
+  resumen:   { titulo: 'Resumen',   icono: 'ri-dashboard-3-line', render: vistaResumen },
+  registros: { titulo: 'Registros', icono: 'ri-file-list-3-line', render: vRegistros.render },
 };
 
 /* ---------- Elementos ---------- */
@@ -135,6 +137,7 @@ function mostrarVista() {
   const ruta = RUTAS[id];
   $$('[data-ruta]', el.menu).forEach((a) => a.classList.toggle('is-active', a.dataset.ruta === id));
   el.titulo.textContent = ruta.titulo;
+  $('[data-tag-demo]').hidden = id !== 'resumen';
   document.title = `${ruta.titulo} | SEJ Partners`;
   cerrarSidebar();
   ruta.render(el.vista);
