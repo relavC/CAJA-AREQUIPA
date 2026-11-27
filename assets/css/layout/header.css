@@ -302,3 +302,11 @@
 .logo__img { height: 40px; width: auto; }
 .logo--light .logo__img { height: 44px; }
 @media (max-width: 640px) { .logo__img { height: 32px; } }
+
+/* Enlace de la página actual */
+.nav__link.is-current { color: var(--color-primary); }
+.nav__link i { font-size: 1.05rem; }
+.nav__list > .nav__item > a.nav__link { gap: 0.45rem; }
+@media (max-width: 1024px) {
+  .nav__list > .nav__item > a.nav__link { justify-content: flex-start; }
+}

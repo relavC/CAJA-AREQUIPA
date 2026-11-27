@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEJ Partners | Herramientas</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <script type="module" src="../assets/js/pages/herramientas.js"></script>
+</head>
+<body class="tools-page">
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" data-header>
+    <div class="container header__inner">
+      <a href="../index.html" class="logo" aria-label="SEJ Partners inicio">
+        <img src="../assets/img/logo-sej.png" alt="SEJ Partners S.A.C." class="logo__img" />
+      </a>
+
+      <nav class="nav" id="mainNav" data-nav aria-label="Menú principal">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="../index.html" class="nav__link"><i class="ri-home-4-line"></i> Inicio</a></li>
+          <li class="nav__item"><a href="herramientas.html" class="nav__link is-current" aria-current="page"><i class="ri-tools-line"></i> Herramientas</a></li>
+          <li class="nav__item"><a href="login.html" class="nav__link"><i class="ri-dashboard-line"></i> Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <button class="burger" data-burger aria-label="Abrir menú" aria-controls="mainNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="overlay" data-overlay></div>
+
+  <main class="tools">
+    <div class="container tools__inner">
+      <header class="tools__head">
+        <span class="tools__tag"><i class="ri-file-edit-line"></i> Herramientas</span>
+        <h1>Formulario de solicitud de crédito</h1>
+        <p>Registra los datos del cliente y del crédito solicitado. Por ahora la información no se guarda en una base de datos: al enviar verás un resumen de la solicitud.</p>
+      </header>
+
+      <form class="tool-form" data-tool-form novalidate>
+        <fieldset>
+          <legend><i class="ri-user-line"></i> Datos del cliente</legend>
+          <div class="tool-form__grid">
+            <label class="control">
+              <span>Nombres y apellidos *</span>
+              <input type="text" name="nombre" required placeholder="Ej. Juan Pérez Quispe" />
+            </label>
+            <label class="control">
+              <span>DNI *</span>
+              <input type="text" name="dni" required inputmode="numeric" pattern="\d{8}" maxlength="8" placeholder="8 dígitos" />
+            </label>
+            <label class="control">
+              <span>Celular *</span>
+              <input type="tel" name="celular" required inputmode="numeric" pattern="9\d{8}" maxlength="9" placeholder="9XXXXXXXX" />
+            </label>
+            <label class="control">
+              <span>Correo</span>
+              <input type="email" name="correo" placeholder="cliente@correo.com" />
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><i class="ri-bank-line"></i> Datos del crédito</legend>
+          <div class="tool-form__grid">
+            <label class="control">
+              <span>Tipo de crédito *</span>
+              <select name="tipo" required>
+                <option value="">Selecciona</option>
+                <option>Crédito de negocio</option>
+                <option>Crédito de consumo</option>
+                <option>Crédito de vivienda</option>
+              </select>
+            </label>
+            <label class="control">
+              <span>Monto solicitado (S/) *</span>
+              <input type="number" name="monto" required min="300" step="50" placeholder="Ej. 5000" />
+            </label>
+            <label class="control">
+              <span>Plazo (meses) *</span>
+              <input type="number" name="plazo" required min="1" max="240" placeholder="Ej. 12" />
+            </label>
+            <label class="control">
+              <span>Agencia *</span>
+              <input type="text" name="agencia" required placeholder="Ej. Arequipa Centro" />
+            </label>
+          </div>
+          <label class="control tool-form__full">
+            <span>Observaciones</span>
+            <textarea name="observaciones" rows="3" placeholder="Destino del crédito, comentarios del asesor..."></textarea>
+          </label>
+        </fieldset>
+
+        <p class="alert alert--bad" data-form-error role="alert" hidden></p>
+
+        <div class="tool-form__actions">
+          <button type="reset" class="btn btn--ghost"><i class="ri-eraser-line"></i> Limpiar</button>
+          <button type="submit" class="btn btn--primary"><i class="ri-send-plane-line"></i> Enviar solicitud</button>
+        </div>
+      </form>
+
+      <section class="tool-result" data-tool-result hidden aria-live="polite"></section>
+    </div>
+  </main>
+</body>
+</html>
